@@ -2063,9 +2063,9 @@ return
 echo
 else
 echo
-echo .....error: Ошибка перехода в директорию!
+echo .....Fehler: Navigieren zum Verzeichnis fehlgeschlagen!
 echo
-echo Введите директорию правильно!
+echo Verzeichnis richtig eingeben!
 echo
 my_b
 return
@@ -2086,15 +2086,15 @@ if [ ! -z "$v" ]; then
 free_space="$(busybox df -h "$PWD" | busybox tail -1 |  busybox awk '{ print $(NF-2) }')"
  free_data="$(busybox df -h /data | busybox tail -1 |  busybox awk '{ print $(NF-2) }')"
  echo
- echo "...Находимся в папке: /$nb"
- echo "...В /${nb} свободно: $free_space"
+ echo "...Wir befinden uns im Ordner: /$nb"
+ echo "...In /${nb} frei: $free_space"
  if [ "$free_space" != "$free_data" ]; then
- echo "...В /data свободно: $free_data"
+ echo "...In /data frei: $free_data"
  fi
  echo
- echo ".....Выберите файл для распаковки:"
+ echo ".....Eine zu extrahierende Datei auswählen:"
  echo
-select menu in $v "Zurück zum Hauptmenü " "Завершение работы"; do
+select menu in $v "Zurück zum Hauptmenü " "Herunterfahren"; do
 case $REPLY in
                   [1-9]*) i="$#"
                       j="$#"
@@ -2136,7 +2136,7 @@ case $REPLY in
  done
  else
  echo
- echo ....."В папке \"/$nb\" нет образов \".br\" для распаковки."
+ echo ....."Im \"/$nb\"-Ordner keine \".br\" zum Entpacken."
  echo
  main_menu
 return
@@ -2152,7 +2152,7 @@ return
        return
        else
        echo
-       echo ".....Последняя использованная папка ещё не была определена!"
+       echo ".....Der zuletzt verwendete Ordner wurde noch nicht ermittelt!"
        echo
        main_menu
        fi
@@ -2164,7 +2164,7 @@ return
              break ;;
          *) clear
             echo
-            echo ".....Вводите цифру, соответствующую этому Menü."
+            echo ".....Geben Sie die Nummer ein, die diesem Menü entspricht."
              my_br
             break ;;      
     esac
@@ -2173,7 +2173,7 @@ return
 }
 my_br
 break ;;
-         7) #Сборка .img начало +++++++++++++++++
+         7) #img-Build starten+++++++++++++++++
 
 dir=/data/local/binary
 cd /data/local/UnpackerSystem
@@ -2201,7 +2201,7 @@ b=$(for a in $(busybox find -maxdepth 1 ! -name "." -type d | busybox sed 's!./!
 
  if [ ! -z "$b" ]; then
  echo
- echo ".....Выберите папку для сборки:"
+ echo ".....Build-Ordner auswählen:"
  echo
  select menu in $b "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -2259,7 +2259,7 @@ case $REPLY in
  else
  clear
  echo
- echo ....."В \"$PWD\" нет доступных папок для сборки."
+ echo ....." In \"$PWD\" Build-Ordner verfügbar."
  echo
  main_menu
  return
@@ -2280,7 +2280,7 @@ pack_img_orig()
 
  if [ ! -z "$b" ]; then
  echo
- echo ".....Выберите папку для сборки:"
+ echo ".....Einen Build-Ordner auswählen:"
  echo
  select menu in $b "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -2326,7 +2326,7 @@ case $REPLY in
  else
  clear
  echo
- echo ....."В \"$PWD\" нет папок для сборки."
+ echo ....."In \"$PWD\" gibt es keine Build-Ordner."
  echo
  main_menu
  return
@@ -2346,7 +2346,7 @@ return
 
  if [ ! -z "$b" ]; then
  echo
- echo ".....Выберите папку для сборки:"
+ echo ".....Einen Build-Ordner auswählen:"
  echo
  select menu in $b "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -2392,7 +2392,7 @@ case $REPLY in
  else
  clear
  echo
- echo ....."В \"$PWD\" нет папок для сборки."
+ echo ....."In \"$PWD\" gibt es keine Build-Ordner."
  echo
  main_menu
  return
@@ -2412,7 +2412,7 @@ b=$(for a in $(busybox find -maxdepth 1 ! -name "." -type d | busybox sed 's!./!
 
  if [ ! -z "$b" ]; then
  echo
- echo ".....Выберите папку для сборки:"
+ echo ".....Einen Build-Ordner auswählen:"
  echo
  select menu in $b "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -2471,7 +2471,7 @@ case $REPLY in
  else
  clear
  echo
- echo ....."В \"$PWD\" нет доступных папок для сборки."
+ echo ....."In \"$PWD\" kein Build-Ordner verfügbar."
  echo
  main_menu
  return
@@ -2491,7 +2491,7 @@ b=$(for a in $(busybox find -maxdepth 1 ! -name "." -type d | busybox sed 's!./!
 
  if [ ! -z "$b" ]; then
  echo
- echo ".....Выберите папку для сборки:"
+ echo ".....Einen Build-Ordner auswählen:"
  echo
  select menu in $b "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -2556,7 +2556,7 @@ if busybox test "$size_orig" -le "10485760"; then
  else
  clear
  echo
- echo ....."В \"$PWD\" нет доступных папок для сборки."
+ echo ....."In \"$PWD\" kein Build-Ordner verfügbar."
  echo
  main_menu
  return
@@ -2576,7 +2576,7 @@ b=$(for a in $(busybox find -maxdepth 1 ! -name "." -type d | busybox sed 's!./!
 
  if [ ! -z "$b" ]; then
  echo
- echo ".....Выберите папку для сборки:"
+ echo ".....Einen Build-Ordner auswählen:"
  echo
  select menu in $b "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -2640,7 +2640,7 @@ if busybox test "$size_orig" -le "10485760"; then
  else
  clear
  echo
- echo ....."В \"$PWD\" нет доступных папок для сборки."
+ echo ....."IN \"$PWD\" kein Build-Ordner verfügbar."
  echo
  main_menu
  return
@@ -2652,16 +2652,16 @@ return
             check_d
    if [ $(echo $?) -eq 0 ]; then
             echo
-            echo "      Menü: Сборка .img"
+            echo "      Menü: Erstellen .img"
             echo
-select img in "Собрать .img(sparse)" "Собрать .img(raw)" "Сборка super.img" "Запись в fs_config" "Информация о размере папки для сборки" "Восстановление симлинков" "Zurück zum Hauptmenü " "Завершение работы"; do
+select img in ".img(sparse) erstellen" ".img(raw) erstellen" "super.img erstellen" "aufnahme in fs_config" "Informationen zur Größe des Assemblyordners" "Восстановление симлинков" "Zurück zum Hauptmenü " "Herunterfahren"; do
 case $REPLY in 
          1 ) clear
              
              sparse_s()
              {
              echo
-  select img in "Собрать .img(sparse) с оригинальным размером" "Собрать .img(sparse) с вводом размера образа" "Собрать .img(sparse) с размером папки для сборки" "Добавить N mb к размеру и собрать .img(sparse)" "Zurück zum Hauptmenü "; do
+  select img in ".img(sparse) mit Originalgröße erstellen" ".img (sparse) mit Image-größeneingabe Erstellen" ".img (sparse) mit der Größe des Erstellungsordners erstellen" "N MB zur Größe hinzufügen und .img (sparse) erstellen" "Zurück zum Hauptmenü "; do
 case $REPLY in 
                 1 ) clear
                      nn
@@ -2685,7 +2685,7 @@ case $REPLY in
                     break ;;
                 * ) clear
             echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
             echo
             sparse_s
               break ;;
@@ -2699,7 +2699,7 @@ break ;;
              raw_s()
 {
              echo
-select img in "Собрать .img(raw) с оригинальным размером" "Собрать .img(raw) с вводом размера образа" "Собрать .img(raw) с размером папки для сборки" "Добавить N mb к размеру и собрать .img(raw)" "Zurück zum Hauptmenü "; do
+select img in ".img(raw) in Originalgröße erstellen" ".img(raw) mit Image-Größeneingabe erstellen" ".img(raw) mit der Größe des Erstellungsordners erstellen" "N mb zur Größe hinzufügen und .img(raw) erstellen" "Zurück zum Hauptmenü "; do
 case $REPLY in 
                 1 ) clear
                     nn
@@ -2723,7 +2723,7 @@ case $REPLY in
                     break ;;
                 * ) clear
             echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. " 
+            echo "      Dem Menü entsprechenden Zahlen eingeben. " 
               raw_s
               break ;;
   esac
@@ -2734,9 +2734,9 @@ raw_s
 break ;;
          3) clear
              echo
-             echo ".....Проверьте наличие нужных образов в папке /data/local/UnpackerSuper"
+             echo ".....Überprüfen, ob sich die erforderlichen Images im Ordner befinden /data/local/UnpackerSuper"
              echo
-select img in "Собрать super.img(sparse)" "Собрать super.img(raw)" "Zurück zum Hauptmenü " "Завершение работы"; do
+select img in "super.img(sparse) builden" "super.img(raw) builden" "Zurück zum Hauptmenü " "Herunterfahren"; do
 case $REPLY in
                 1 ) clear
                     spars=1
@@ -2753,13 +2753,13 @@ case $REPLY in
                     break ;;
                 4 ) clear
                     break ;;
-                 *) echo "Вводите цифру, соответствующую пунктам этого Menü."
+                 *) echo "Nummer eingeben, die den Elementen in diesem Menü entspricht."
   esac
 done
 break ;;
          4) clear
              echo
-             echo ".....Добавьте папки или файлы в распакованный образ..."
+             echo ".....Dem entpackten Image, Ordner oder Dateien hinzufügen..."
              echo
 select img in "Запись" "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -2769,7 +2769,7 @@ case $REPLY in
                 2 ) clear
                     main_menu
                     break ;;
-                 *) echo "Вводите цифру, соответствующую пунктам этого Menü."
+                 *) echo "Nummer eingeben, die den Elementen in diesem Menü entspricht."
   esac
 done
 break ;;  
@@ -2787,9 +2787,9 @@ set -- $b
 
 if [ ! -z "$b" ]; then
 echo
-echo ".....Выберите папку:"
+echo ".....Einen Ordner auswählen:"
 echo
-select menu in $b "Zurück zum Hauptmenü " "Завершение работы"; do
+select menu in $b "Zurück zum Hauptmenü " "Herunterfahren"; do
 case $REPLY in
                  [1-9]*) i="$#"
                       j="$#"
@@ -2816,14 +2816,14 @@ if busybox test "$size_orig" -le "10485760"; then
  echo "       -----------------------------"
  echo "       -----------------------------"
  echo
- echo ".....Текущий размер для сборки образа:"  
- echo "     $size_real байт"
+ echo ".....Aktuelle Image-Build-Größe:"  
+ echo "     $size_real Byte"
  echo
- echo ".....Размер папки \"$pack_d\":"
- echo "     $size_orig байт"
+ echo ".....Ordnergröße \"$pack_d\":"
+ echo "     $size_orig Byte"
  echo
- echo ".....Примерный минимальный размер с которым соберётся образ:"
- echo "     $size_new байт"
+ echo ".....Ungefähre Mindestgröße, mit der das Image zusammengesetzt wird:"
+ echo "     $size_new Byte"
  echo
          main_menu
          return
@@ -2840,7 +2840,7 @@ if busybox test "$size_orig" -le "10485760"; then
        else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          size_papka
          return
          break
@@ -2848,7 +2848,7 @@ if busybox test "$size_orig" -le "10485760"; then
          break;;
       *) clear
          echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          size_papka
          return
          break;;
@@ -2856,7 +2856,7 @@ if busybox test "$size_orig" -le "10485760"; then
   done
  else
  echo
- echo ....."В \"$PWD\" нет папок для сборки."
+ echo ....."In \"$PWD\" keine Build-Ordner vorhanden."
  echo
  main_menu
  return
@@ -2880,7 +2880,7 @@ return
 
  if [ ! -z "$b" ]; then
  echo
- echo ".....Выберите папку для восстановления:"
+ echo ".....Einen Ordner für die Wiederherstellung auswählen:"
  echo
  select menu in $b "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -2897,16 +2897,16 @@ case $REPLY in
            busybox tar -xf "$config"/"$pack_d"_sim.tar
 if [ $(echo $?) -eq 0 ]; then
  echo
- echo ".....Успешно восстановлено!"
+ echo ".....Erfolgreich wiederhergestellt!"
  echo
  else
  echo
- echo ".....Ошибка при восстановлении!"
+ echo ".....Wiederherstellungsfehler!"
  echo
  fi
  else
  echo
- echo ".....Нет сохранённого архива для восстановления!"
+ echo ".....Es gibt kein gespeichertes Archiv zum Wiederherstellen!"
  echo
  fi
  main_menu
@@ -2920,7 +2920,7 @@ if [ $(echo $?) -eq 0 ]; then
  else
  clear
  echo
- echo " Geben Sie die dem Menü entsprechenden Zahlen ein. "
+ echo " Dem Menü entsprechenden Zahlen eingeben. "
  symlink
  return
  break
@@ -2928,7 +2928,7 @@ if [ $(echo $?) -eq 0 ]; then
  break;;
  *) clear
  echo
- echo " Geben Sie die dem Menü entsprechenden Zahlen ein. "
+ echo " Dem Menü entsprechenden Zahlen eingeben. "
  symlink
  return
  break;;
@@ -2937,7 +2937,7 @@ if [ $(echo $?) -eq 0 ]; then
  else
  clear
  echo
- echo ....."В \"$PWD\" нет папок для восстановления."
+ echo ....."In \"$PWD\" gibt keine Wiederherstellungsordner. "
  echo
  main_menu
  return
@@ -2951,12 +2951,12 @@ return
              break ;;
          8 ) clear
              break ;;
-         *) echo "Вводите цифру, соответствующую пунктам Menü: Сборка sparse.img." ;;
+         *) echo "Nummer eingeben, die den Menüpunkten entspricht: sparse.img. erstellen" ;;
     esac
 done
 else
 echo
-echo ....."В \"$PWD\" нет папок для сборки."
+echo ....."In \"$PWD\" gibt keine Build-Ordner."
 echo
 main_menu
 return
@@ -2965,16 +2965,16 @@ return
 }
  my5
     break ;;          
-              #Конец функции сборки .img
+              #Ende der .img-Build-Funktion
 
           8) clear
              my6(){
              file_size=${dir}/pack_img_dat
              check_dat="222"
              echo
-             echo "      Menü: Сборка и конвертация в .dat"
+             echo "      Menü: Erstellen und Konvertieren in .dat"
              echo
-select img in "Собрать .img -> .dat" "Собрать .img с вводом размера -> .dat" "Собрать .img с размером папки для сборки -> .dat" "Добавить N mb к размеру и, собрать .img -> .dat" "Конвертировать \".img\" в \".dat\"" "Zurück zum Hauptmenü " "Завершение работы"; do
+select img in ".img -> .dat erstellen" ".img mit Größeneingabe erstellen -> .dat" ".img mit der Größe des Build-Ordners -> .dat erstellen" "N MB zur Größe hinzufügen und .img -> .dat erstellen" "\".img\" in \".dat\" umwandeln" "Zurück zum Hauptmenü " "Herunterfahren"; do
 case $REPLY in 
          1 ) clear
               nn
@@ -2997,7 +2997,7 @@ case $REPLY in
          5 )  clear
               my_k(){
              echo 
-             echo "..Перейдите в папку где находится файл \".img\", например: cd /sdcard"
+             echo "..In den Ordner wechseln, in dem sich die Datei \".img\" befindet, zum Beispiel: cd /sdcard"
 read b && $b
 if [ $(echo $?) -eq 0 ]; then
 clear
@@ -3013,7 +3013,7 @@ set -- $v
 
 if [ ! -z "$v" ]; then
 echo
-echo ".....Выберите файл для конвертации в \".dat\":"
+echo ".....Datei auswählen, die in \".dat\" konvertiert werden soll:"
 echo
 select menu in $v "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -3035,7 +3035,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          my_k
          return
          break
@@ -3043,7 +3043,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          my_k
          return
          break;;
@@ -3051,7 +3051,7 @@ case $REPLY in
  done
  else
  echo
- echo ....."В папке \"$nd\" нет образов \".img\" для конвертации."
+ echo ....."Im Ordner \"$nd\" sind keine \".img\"-Images zum Konvertieren vorhanden."
  echo
  main_menu
 return
@@ -3059,9 +3059,9 @@ return
 echo
 else
 echo
-echo .....error: Ошибка перехода в директорию!
+echo .....Fehler: Zum Verzeichnis navigieren fehlgeschlagen! 
 echo
-echo Введите директорию правильно!
+echo Verzeichnis richtig eingeben!
 echo
 my_k
 return
@@ -3089,7 +3089,7 @@ return
             echo
             echo "      Menü: Сборка и конвертация в .br"
             echo
-select img in "Собрать .img -> .br" "Собрать .img с вводом размера -> .br" "Собрать .img с размером папки для сборки -> .br" "Добавить N mb к размеру и собрать .img -> .br" "Конвертировать .img в .br" "Конвертировать .dat в .br" "Zurück zum Hauptmenü " "Завершение работы"; do
+select img in "Собрать .img -> .br" "Собрать .img с вводом размера -> .br" "Собрать .img с размером папки для сборки -> .br" "Добавить N mb к размеру и собрать .img -> .br" "Конвертировать .img в .br" "Конвертировать .dat в .br" "Zurück zum Hauptmenü " "Herunterfahren"; do
 case $REPLY in
           1 ) clear
               nn
@@ -3153,7 +3153,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          my_imgbr
          return
          break
@@ -3161,7 +3161,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          my_imgbr
          return
          break;;
@@ -3226,7 +3226,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          my_kbr
          return
          break
@@ -3234,7 +3234,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          my_kbr
          return
          break;;
@@ -3278,7 +3278,7 @@ break ;;
              echo 
              echo "      Menü: Конвертация sparse > raw; raw > sparse"
              echo
-select img in "Конвертировать .img(raw) в .img (sparse)" "Конвертировать .img(sparse) в .img(raw)" "Zurück zum Hauptmenü " "Завершение работы"; do
+select img in "Конвертировать .img(raw) в .img (sparse)" "Конвертировать .img(sparse) в .img(raw)" "Zurück zum Hauptmenü " "Herunterfahren"; do
 case $REPLY in 
          1 ) clear
              konv_img(){
@@ -3339,7 +3339,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          konv_img
          return
          break
@@ -3347,7 +3347,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          konv_img
          return
          break;;
@@ -3419,7 +3419,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          konv_img
          return
          break
@@ -3427,7 +3427,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          konv_img
          return
          break;;
@@ -3473,7 +3473,7 @@ break ;;
             echo "      Menü: Прочие инструменты"
             echo
            
-select img in "Патч vbmeta" "Просмотр структуры AVB файла" "Конвертация .sin -> .img" "Конвертировать .lz4" "Склеить образ из прошивки под Qfil" "Извлечение образов из payload.bin" "Извлечение образов из UPDATE.APP" "Создание образа из блока памяти текущей прошивки" "Распаковка(конвертация) .ozip" "Создание tar.md5" "Распаковка прошивок .img" "Распаковка прошивок .ofp" "Zurück zum Hauptmenü " "Завершение работы"; do
+select img in "Патч vbmeta" "Просмотр структуры AVB файла" "Конвертация .sin -> .img" "Конвертировать .lz4" "Склеить образ из прошивки под Qfil" "Извлечение образов из payload.bin" "Извлечение образов из UPDATE.APP" "Создание образа из блока памяти текущей прошивки" "Распаковка(конвертация) .ozip" "Создание tar.md5" "Распаковка прошивок .img" "Распаковка прошивок .ofp" "Zurück zum Hauptmenü " "Herunterfahren"; do
 case $REPLY in
           1 ) clear
              vbmeta()
@@ -3571,7 +3571,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          vbmeta
          return
          break
@@ -3579,7 +3579,7 @@ case $REPLY in
          break;;
    *) clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          vbmeta
          return
          break ;;
@@ -3676,7 +3676,7 @@ f_avb=/data/local/binary/avb.txt
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          vbmeta_info
          return
          break
@@ -3684,7 +3684,7 @@ f_avb=/data/local/binary/avb.txt
          break;;
    *) clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          vbmeta_info
          return
          break ;;
@@ -3779,7 +3779,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          sin_img
          return
          break
@@ -3787,7 +3787,7 @@ case $REPLY in
          break;;
    *) clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          sin_img
          return
          break;;
@@ -3819,7 +3819,7 @@ sin_img
              echo
             echo "      Menü: Конвертация .lz4"
             echo
-select img in "Извлечение из .lz4" "Сжатие в .lz4" "Zurück zum Hauptmenü " "Завершение работы"; do
+select img in "Извлечение из .lz4" "Сжатие в .lz4" "Zurück zum Hauptmenü " "Herunterfahren"; do
 case $REPLY in 
          1 ) clear
              
@@ -3879,7 +3879,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          decomp_lz4
          return
          break
@@ -3887,7 +3887,7 @@ case $REPLY in
          break;;
    *) clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          decomp_lz4
          return
          break;;
@@ -4006,7 +4006,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          comp_lz4
          return
          break
@@ -4014,7 +4014,7 @@ case $REPLY in
          break;;
    *) clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          comp_lz4
          return
          break ;;
@@ -4078,7 +4078,7 @@ fi
  echo
  echo "...В /data/local/UnpackerQfil свободно: $free_space"
  echo
- select img in "Склеить" "Zurück zum Hauptmenü " "Завершение работы"; do
+ select img in "Склеить" "Zurück zum Hauptmenü " "Herunterfahren"; do
 case $REPLY in 
          1 ) clear
              cd /data/local/UnpackerQfil
@@ -4238,7 +4238,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          payload
          return
          break
@@ -4246,7 +4246,7 @@ case $REPLY in
          break;;
    *) clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          payload
          return
          break ;;
@@ -4352,7 +4352,7 @@ fi
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          update_app
          return
          break
@@ -4360,7 +4360,7 @@ fi
          break;;
    *) clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          update_app
          return
          break ;;
@@ -4444,7 +4444,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          ss_ozip
          return
          break
@@ -4452,7 +4452,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          ss_ozip
          return
          break;;
@@ -4532,7 +4532,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          comp_md5
          return
          break
@@ -4540,7 +4540,7 @@ case $REPLY in
          break;;
    *) clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          comp_md5
          return
          break ;;
@@ -4731,7 +4731,7 @@ echo "rkaf" > "$rok_dir"/"$name_rok"/conf
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          rokchip_extract
          return
          break
@@ -4739,7 +4739,7 @@ echo "rkaf" > "$rok_dir"/"$name_rok"/conf
          break;;
    *) clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          rokchip_extract
          return
          break ;;
@@ -4784,7 +4784,7 @@ if [ ! -z "$b" ]; then
 echo
 echo ".....Выберите папку для сборки:"
 echo
-select menu in $b "Zurück zum Hauptmenü " "Завершение работы"; do
+select menu in $b "Zurück zum Hauptmenü " "Herunterfahren"; do
 case $REPLY in
                  [1-9]*) i="$#"
                       j="$#"
@@ -4865,7 +4865,7 @@ afptool -pack "$name_rok" update.new.img
        else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          rokchip_pack
          return
          break
@@ -4873,7 +4873,7 @@ afptool -pack "$name_rok" update.new.img
          break;;
       *) clear
          echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          rokchip_pack
          return
          break;;
@@ -4896,7 +4896,7 @@ return
               echo
               echo "         Распаковка прошивок .img     "
               echo
- select img in "Распаковать прошивку .img" "Zurück zum Hauptmenü " "Завершение работы"; do
+ select img in "Распаковать прошивку .img" "Zurück zum Hauptmenü " "Herunterfahren"; do
 case $REPLY in 
                 1 ) clear
                     rokchip_extract
@@ -4908,7 +4908,7 @@ case $REPLY in
                      break ;;
                 * ) clear
             echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
             echo
             menu_rok
               break ;;
@@ -4982,7 +4982,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          aa
          return
          break
@@ -4990,7 +4990,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
         aa
          return
          break;;
@@ -5131,7 +5131,7 @@ file=/"$nd"/"$file"
         else
         clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          ofp_extract
          return
          break
@@ -5139,7 +5139,7 @@ file=/"$nd"/"$file"
          break;;
    *) clear
         echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
          ofp_extract
          return
          break ;;
@@ -5171,7 +5171,7 @@ return
               echo
               echo "         Распаковка прошивок .ofp     "
               echo
- select img in "Распаковать прошивку .ofp" "Zurück zum Hauptmenü " "Завершение работы"; do
+ select img in "Распаковать прошивку .ofp" "Zurück zum Hauptmenü " "Herunterfahren"; do
 case $REPLY in 
                 #1 ) #clear
                     #check_pack=0
@@ -5190,7 +5190,7 @@ case $REPLY in
                      break ;;
                 * ) clear
             echo
-            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
+            echo "      Dem Menü entsprechenden Zahlen eingeben. "
             echo
             menu_ofp
               break ;;
