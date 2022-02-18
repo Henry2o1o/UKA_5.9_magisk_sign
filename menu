@@ -649,7 +649,7 @@ return
  MENU=(      "Menü: Extraktion file_contexts"
              "Menü: AIK-Mobile Repacking boot(recovery).img"
              "Menü: Auspacken .img"
-             "Menü: Mounting raw images  *.img"
+             "Menü: Mounting raw images *.img"
              "Menü: Auspacken .dat"
              "Menü: Auspacken .br"
              "Menü: Montage .img"
@@ -658,8 +658,8 @@ return
              "Menü: Wandlung sparse > raw; raw > sparse"
              "Menü: Andere Werkzeuge"
              "Menü: Arbeitsordner bereinigen"
-             "Menü: Entferne \"Unpacker Kitchen for Android\""
-             "Herunterfahren"
+             "Menü: \"Unpacker Kitchen for Android\" entfernen"
+             "Beenden"
 )
 echo
 echo "               Hauptmenü:"
@@ -679,7 +679,7 @@ select menu in "${MENU[@]}"; do
              echo
              echo "     boot.img in den Ordner legen: /data/local/UnpackerContexts"
              echo
-select img in "Extrakt file_contexts" "Wandlung file_contexts(txt) -> file_contexts(bin)(Version:8.38)" "Konfiguration einstellen" "Zurück zum Hauptmenü " "Herunterfahren"; do
+select img in "Extrakt file_contexts" "Wandlung file_contexts(txt) -> file_contexts(bin)(Version:8.38)" "Konfiguration einstellen" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in 
          1 ) clear
              bootext
@@ -730,7 +730,7 @@ break ;;
              echo
              echo "    boot.img in den Ordner legen: /data/local/AIK-mobile"
              echo
-select img in "Boot entpacken (recovery)" "Boot packen(recovery)" "AVB/dm-verity löschen" "Patch boot.img(32bit, SAR) für Magisk" "Arbeitsordners bereinigen: /data/local/AIK-mobile" "Vollständige Entfernung von AIK-Mobile vom Telefon" "Zurück zum Hauptmenü " "Herunterfahren"; do
+select img in "Boot entpacken (recovery)" "Boot packen(recovery)" "AVB/dm-verity löschen" "Patch boot.img(32bit, SAR) für Magisk" "Arbeitsordners bereinigen: /data/local/AIK-mobile" "Vollständige Entfernung von AIK-Mobile vom Telefon" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in 
          1 ) clear
              my_sel_boot(){
@@ -1433,7 +1433,7 @@ return
             echo
             echo "      Menü: Распаковка .img"
             echo
-select menu in  ".img aus einem Ordner entpacken: /data/local/UnpackerSystem" ".img aus einem Ordner entpacken: /data/local/UnpackerSuper" ".img aus einem Ordner entpacken: /data/local/UnpackerPayload" ".img aus einem Ordner entpacken: /data/local/UnpackerSystem/uka_backup" "Extrahieren von .img aus dem zuletzt verwendeten Ordner" "Pfad zum Ordner mit dem .img-Image eingeben" "Zurück zum Hauptmenü " "Herunterfahren"; do
+select menu in  ".img aus einem Ordner entpacken: /data/local/UnpackerSystem" ".img aus einem Ordner entpacken: /data/local/UnpackerSuper" ".img aus einem Ordner entpacken: /data/local/UnpackerPayload" ".img aus einem Ordner entpacken: /data/local/UnpackerSystem/uka_backup" "Extrahieren von .img aus dem zuletzt verwendeten Ordner" "Pfad zum Ordner mit dem .img-Image eingeben" "Zurück zum Hauptmenü " "Beenden"; do
  case $REPLY in
              1 ) clear
          nd=data/local/UnpackerSystem
@@ -1686,7 +1686,7 @@ read b && $b
             echo "      Menü: Raw-Images mounten *.img"
             echo "     --------------------------------------"
             echo
-select img in "Image aus Ordner mounten: /data/local/UnpackerSystem" "Pfad zu dem Ordner mit dem zu mountenden .img-Image eingeben" "Image unmounten" "Zurück zum Hauptmenü " "Herunterfahren"; do
+select img in "Image aus Ordner mounten: /data/local/UnpackerSystem" "Pfad zu dem Ordner mit dem zu mountenden .img-Image eingeben" "Image unmounten" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in 
          1 ) clear
              home_dir="/data/local/UnpackerSystem/"
@@ -1790,7 +1790,7 @@ break ;;
             echo
             echo "      Menü: Auspacken .dat"
             echo
-select img in "Extrahieren.dat" "Extrahieren von .dat aus dem zuletzt verwendeten Ordner" "Zurück zum Hauptmenü " "Herunterfahren"; do
+select img in "Extrahieren.dat" "Extrahieren von .dat aus dem zuletzt verwendeten Ordner" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in 
          1 ) clear
              cd
@@ -1819,7 +1819,7 @@ case $REPLY in
  echo
  echo ".....Eine zu extrahierende Datei auswählen:"
  echo
- select menu in $v "Zurück zum Hauptmenü " "Herunterfahren"; do
+ select menu in $v "Zurück zum Hauptmenü " "Beenden"; do
  case $REPLY in
                    [1-9]*) i="$#"
                       j="$#"
@@ -1899,7 +1899,7 @@ free_space="$(busybox df -h "$PWD" | busybox tail -1 |  busybox awk '{ print $(N
  echo
  echo ".....Eine zu extrahierende Datei auswählen:"
  echo
-select menu in $v "Zurück zum Hauptmenü " "Herunterfahren"; do
+select menu in $v "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in
                   [1-9]*) i="$#"
                       j="$#"
@@ -1984,7 +1984,7 @@ break ;;
             echo
             echo "      Menü: Extrahieren .br"
             echo
-select img in "Extrahieren .br" "Extrahieren von .br aus dem zuletzt verwendeten Ordner" "Zurück zum Hauptmenü " "Herunterfahren"; do
+select img in "Extrahieren .br" "Extrahieren von .br aus dem zuletzt verwendeten Ordner" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in 
          1 ) clear
               cd
@@ -2013,7 +2013,7 @@ free_space="$(busybox df -h "$PWD" | busybox tail -1 |  busybox awk '{ print $(N
  echo
  echo ".....Eine zu extrahierende Datei ausählen:"
  echo
-select menu in $v "Zurück zum Hauptmenü " "Herunterfahren"; do
+select menu in $v "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in
                   [1-9]*) i="$#"
                       j="$#"
@@ -2094,7 +2094,7 @@ free_space="$(busybox df -h "$PWD" | busybox tail -1 |  busybox awk '{ print $(N
  echo
  echo ".....Eine zu extrahierende Datei auswählen:"
  echo
-select menu in $v "Zurück zum Hauptmenü " "Herunterfahren"; do
+select menu in $v "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in
                   [1-9]*) i="$#"
                       j="$#"
@@ -2654,7 +2654,7 @@ return
             echo
             echo "      Menü: Erstellen .img"
             echo
-select img in ".img(sparse) erstellen" ".img(raw) erstellen" "super.img erstellen" "aufnahme in fs_config" "Informationen zur Größe des Assemblyordners" "Восстановление симлинков" "Zurück zum Hauptmenü " "Herunterfahren"; do
+select img in ".img(sparse) erstellen" ".img(raw) erstellen" "super.img erstellen" "aufnahme in fs_config" "Informationen zur Größe des Assemblyordners" "Восстановление симлинков" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in 
          1 ) clear
              
@@ -2736,7 +2736,7 @@ break ;;
              echo
              echo ".....Überprüfen, ob sich die erforderlichen Images im Ordner befinden /data/local/UnpackerSuper"
              echo
-select img in "super.img(sparse) builden" "super.img(raw) builden" "Zurück zum Hauptmenü " "Herunterfahren"; do
+select img in "super.img(sparse) builden" "super.img(raw) builden" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in
                 1 ) clear
                     spars=1
@@ -2789,7 +2789,7 @@ if [ ! -z "$b" ]; then
 echo
 echo ".....Einen Ordner auswählen:"
 echo
-select menu in $b "Zurück zum Hauptmenü " "Herunterfahren"; do
+select menu in $b "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in
                  [1-9]*) i="$#"
                       j="$#"
@@ -2974,7 +2974,7 @@ return
              echo
              echo "      Menü: Erstellen und Konvertieren in .dat"
              echo
-select img in ".img -> .dat erstellen" ".img mit Größeneingabe erstellen -> .dat" ".img mit der Größe des Build-Ordners -> .dat erstellen" "N MB zur Größe hinzufügen und .img -> .dat erstellen" "\".img\" in \".dat\" umwandeln" "Zurück zum Hauptmenü " "Herunterfahren"; do
+select img in ".img -> .dat erstellen" ".img mit Größeneingabe erstellen -> .dat" ".img mit der Größe des Build-Ordners -> .dat erstellen" "N MB zur Größe hinzufügen und .img -> .dat erstellen" "\".img\" in \".dat\" umwandeln" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in 
          1 ) clear
               nn
@@ -3089,7 +3089,7 @@ return
             echo
             echo "      Menü: Erstellen und Konvertieren in .br"
             echo
-select img in ".img -> .br erstellen" ".img mit Größeneingabe erstellen -> .br" ".img mit der Größe des Build-Ordners -> .br erstellen" "N MB zur Größe hinzufügen und .img -> .br erstellen" ".img in .br konvertieren" ".dat in .br konvertieren" "Zurück zum Hauptmenü " "Herunterfahren"; do
+select img in ".img -> .br erstellen" ".img mit Größeneingabe erstellen -> .br" ".img mit der Größe des Build-Ordners -> .br erstellen" "N MB zur Größe hinzufügen und .img -> .br erstellen" ".img in .br konvertieren" ".dat in .br konvertieren" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in
           1 ) clear
               nn
@@ -3278,7 +3278,7 @@ break ;;
              echo 
              echo "      Menü: Конвертация sparse > raw; raw > sparse"
              echo
-select img in "Конвертировать .img(raw) в .img (sparse)" "Конвертировать .img(sparse) в .img(raw)" "Zurück zum Hauptmenü " "Herunterfahren"; do
+select img in "Конвертировать .img(raw) в .img (sparse)" "Конвертировать .img(sparse) в .img(raw)" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in 
          1 ) clear
              konv_img(){
@@ -3473,7 +3473,7 @@ break ;;
             echo "      Menü: Andere Werkzeuge"
             echo
            
-select img in "Патч vbmeta" "Просмотр структуры AVB файла" "Конвертация .sin -> .img" "Конвертировать .lz4" "Склеить образ из прошивки под Qfil" "Извлечение образов из payload.bin" "Извлечение образов из UPDATE.APP" "Создание образа из блока памяти текущей прошивки" "Распаковка(конвертация) .ozip" "Создание tar.md5" "Распаковка прошивок .img" "Распаковка прошивок .ofp" "Zurück zum Hauptmenü " "Herunterfahren"; do
+select img in "vbmeta-Patch" "Struktur einer AVB-Datei anzeigen" "Umwandeln .sin -> .img" "Konvertieren  .lz4" "Reparieren Sie das Image aus der Firmware unter Qfil" "Images aus payload.bin extrahieren" "Images aus UPDATE.APP extrahieren" "Images aus dem Speicherblock der aktuellen Firmware erstellen" "Entpacken (Konvertieren) von .ozip" "tar.md5 erstellen" "Firmware .img entpacken" "Firmware .ofp entpacken" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in
           1 ) clear
              vbmeta()
@@ -3819,7 +3819,7 @@ sin_img
              echo
             echo "      Menü: Конвертация .lz4"
             echo
-select img in "Извлечение из .lz4" "Сжатие в .lz4" "Zurück zum Hauptmenü " "Herunterfahren"; do
+select img in "Извлечение из .lz4" "Сжатие в .lz4" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in 
          1 ) clear
              
@@ -4078,7 +4078,7 @@ fi
  echo
  echo "...В /data/local/UnpackerQfil свободно: $free_space"
  echo
- select img in "Склеить" "Zurück zum Hauptmenü " "Herunterfahren"; do
+ select img in "Склеить" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in 
          1 ) clear
              cd /data/local/UnpackerQfil
@@ -4784,7 +4784,7 @@ if [ ! -z "$b" ]; then
 echo
 echo ".....Выберите папку для сборки:"
 echo
-select menu in $b "Zurück zum Hauptmenü " "Herunterfahren"; do
+select menu in $b "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in
                  [1-9]*) i="$#"
                       j="$#"
@@ -4896,7 +4896,7 @@ return
               echo
               echo "         Firmware .img entpacken     "
               echo
- select img in "Firmware .img entpacken" "Zurück zum Hauptmenü " "Herunterfahren"; do
+ select img in "Firmware .img entpacken" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in 
                 1 ) clear
                     rokchip_extract
@@ -5171,7 +5171,7 @@ return
               echo
               echo "         Распаковка прошивок .ofp     "
               echo
- select img in "Распаковать прошивку .ofp" "Zurück zum Hauptmenü " "Herunterfahren"; do
+ select img in "Распаковать прошивку .ofp" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in 
                 #1 ) #clear
                     #check_pack=0
@@ -5233,7 +5233,7 @@ return
             echo -en "\E[37;0m"
             echo -en "\E[37;1m"
             echo
-select img in "Leerer Ordner: /data/local/UnpackerSystem" "Leerer Ordner: /data/local/UnpackerQfil" "Leerer Ordner: /data/local/UnpackerContexts" "Leerer Ordner: /data/local/UnpackerPayload" "Leerer Ordner: /data/local/UnpackerSuper" "Leerer Ordner: /data/local/UnpackerUpdateApp" "Leerer Ordner: /data/local/UnpackerPreloader" "Alle Ordner auf einmal löschen" "Zurück zum Hauptmenü" "Herunterfahren"; do
+select img in "Leerer Ordner: /data/local/UnpackerSystem" "Leerer Ordner: /data/local/UnpackerQfil" "Leerer Ordner: /data/local/UnpackerContexts" "Leerer Ordner: /data/local/UnpackerPayload" "Leerer Ordner: /data/local/UnpackerSuper" "Leerer Ordner: /data/local/UnpackerUpdateApp" "Leerer Ordner: /data/local/UnpackerPreloader" "Alle Ordner auf einmal löschen" "Zurück zum Hauptmenü" "Beenden"; do
 case $REPLY in 
          1 ) clear
              del=/data/local/UnpackerSystem
