@@ -656,7 +656,7 @@ return
              "Menü: Montage und Umbau zu .dat"
              "Menü: Montage und Umbau zu .br"
              "Menü: Wandlung sparse > raw; raw > sparse"
-             "Menü: Andere Werkzeuge"
+             "Menü: Andere Tools"
              "Menü: Arbeitsordner bereinigen"
              "Menü: \"Unpacker Kitchen for Android\" entfernen"
              "Beenden"
@@ -715,7 +715,7 @@ fi
              break ;;
          5 ) clear
              break ;;
-          *) echo "Nummer eingeben, die den Menüpunkten entspricht: Extraktion file_contexts." ;;
+          *) echo "Nummer eingeben, die den Menüpunkten entspricht: file_contexts extrahieren." ;;
     esac
 done
 }
@@ -1411,7 +1411,7 @@ case $REPLY in
  done
  else
  echo
- echo ".....Im Ordner: /$nd keine unterstützten \".img\"-Images zum Entpacken."
+ echo ".....Im Ordner: /$nd keine unterstützten \".img\"-Images zum Entpacken. "
  echo
  main_menu
 return
@@ -2152,7 +2152,7 @@ return
        return
        else
        echo
-       echo ".....Der zuletzt verwendete Ordner wurde noch nicht ermittelt!"
+       echo ".....Zuletzt verwendete Ordner wurde noch nicht ermittelt!"
        echo
        main_menu
        fi
@@ -2173,7 +2173,7 @@ return
 }
 my_br
 break ;;
-         7) #.img-Builden starten+++++++++++++++++
+         7) #Build .img starten +++++++++++++++++
 
 dir=/data/local/binary
 cd /data/local/UnpackerSystem
@@ -2280,7 +2280,7 @@ pack_img_orig()
 
  if [ ! -z "$b" ]; then
  echo
- echo ".....Einen Build-Ordner auswählen:"
+ echo ".....Build-Ordner auswählen:"
  echo
  select menu in $b "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -2346,7 +2346,7 @@ return
 
  if [ ! -z "$b" ]; then
  echo
- echo ".....Einen Build-Ordner auswählen:"
+ echo ".....Build-Ordner auswählen:"
  echo
  select menu in $b "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -2491,7 +2491,7 @@ b=$(for a in $(busybox find -maxdepth 1 ! -name "." -type d | busybox sed 's!./!
 
  if [ ! -z "$b" ]; then
  echo
- echo ".....Einen Build-Ordner auswählen:"
+ echo ".....Build-Ordner auswählen:"
  echo
  select menu in $b "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -2576,7 +2576,7 @@ b=$(for a in $(busybox find -maxdepth 1 ! -name "." -type d | busybox sed 's!./!
 
  if [ ! -z "$b" ]; then
  echo
- echo ".....Einen Build-Ordner auswählen:"
+ echo ".....Build-Ordner auswählen:"
  echo
  select menu in $b "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -2652,16 +2652,16 @@ return
             check_d
    if [ $(echo $?) -eq 0 ]; then
             echo
-            echo "      Menü: Erstellen .img"
+            echo "      Menü: .img erstellen"
             echo
-select img in ".img(sparse) erstellen" ".img(raw) erstellen" "super.img erstellen" "aufnahme in fs_config" "Informationen zur Größe des Assemblyordners" "Восстановление симлинков" "Zurück zum Hauptmenü " "Beenden"; do
+select img in ".img(sparse) erstellen" ".img(raw) erstellen" "super.img erstellen" "aufnahme in fs_config" "Informationen zur Größe des Assemblyordners" "Symlinks wiederherstellen" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in 
          1 ) clear
              
              sparse_s()
              {
              echo
-  select img in ".img(sparse) mit Originalgröße erstellen" ".img (sparse) mit Image-größeneingabe Erstellen" ".img (sparse) mit der Größe des Erstellungsordners erstellen" "N MB zur Größe hinzufügen und .img (sparse) erstellen" "Zurück zum Hauptmenü "; do
+  select img in ".img(sparse) mit Originalgröße erstellen" ".img (sparse) mit Image-Größeneingabe erstellen" ".img (sparse) mit Erstellungsordnergröße erstellen" "N MB zur Größe hinzufügen und .img (sparse) erstellen" "Zurück zum Hauptmenü "; do
 case $REPLY in 
                 1 ) clear
                      nn
@@ -2685,7 +2685,7 @@ case $REPLY in
                     break ;;
                 * ) clear
             echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
             echo
             sparse_s
               break ;;
@@ -2699,7 +2699,7 @@ break ;;
              raw_s()
 {
              echo
-select img in ".img(raw) in Originalgröße erstellen" ".img(raw) mit Image-Größeneingabe erstellen" ".img(raw) mit der Größe des Erstellungsordners erstellen" "N mb zur Größe hinzufügen und .img(raw) erstellen" "Zurück zum Hauptmenü "; do
+select img in "Собрать .img(raw) с оригинальным размером" "Собрать .img(raw) с вводом размера образа" "Собрать .img(raw) с размером папки для сборки" "Добавить N mb к размеру и собрать .img(raw)" "Zurück zum Hauptmenü "; do
 case $REPLY in 
                 1 ) clear
                     nn
@@ -2723,7 +2723,7 @@ case $REPLY in
                     break ;;
                 * ) clear
             echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben." 
+            echo "      Dem Menü entsprechende Zahl eingeben." 
               raw_s
               break ;;
   esac
@@ -2734,9 +2734,9 @@ raw_s
 break ;;
          3) clear
              echo
-             echo ".....Überprüfen, ob sich die erforderlichen Images im Ordner befinden /data/local/UnpackerSuper"
+             echo ".....Проверьте наличие нужных образов в папке /data/local/UnpackerSuper"
              echo
-select img in "super.img(sparse) builden" "super.img(raw) builden" "Zurück zum Hauptmenü " "Beenden"; do
+select img in "Собрать super.img(sparse)" "Собрать super.img(raw)" "Zurück zum Hauptmenü " "Завершение работы"; do
 case $REPLY in
                 1 ) clear
                     spars=1
@@ -2753,7 +2753,7 @@ case $REPLY in
                     break ;;
                 4 ) clear
                     break ;;
-                 *) echo "Nummer eingeben, die den Elementen in diesem Menü entspricht."
+                 *) echo "Nummer eingeben, die den Element in diesem Menü entspricht."
   esac
 done
 break ;;
@@ -2769,7 +2769,7 @@ case $REPLY in
                 2 ) clear
                     main_menu
                     break ;;
-                 *) echo "Nummer eingeben, die den Elementen in diesem Menü entspricht."
+                 *) echo "Вводите цифру, соответствующую пунктам этого Menü."
   esac
 done
 break ;;  
@@ -2787,9 +2787,9 @@ set -- $b
 
 if [ ! -z "$b" ]; then
 echo
-echo ".....Einen Ordner auswählen:"
+echo ".....Ordner auswählen:"
 echo
-select menu in $b "Zurück zum Hauptmenü " "Beenden"; do
+select menu in $b "Zurück zum Hauptmenü " "Завершение работы"; do
 case $REPLY in
                  [1-9]*) i="$#"
                       j="$#"
@@ -2840,7 +2840,7 @@ if busybox test "$size_orig" -le "10485760"; then
        else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Dem Menü entsprechende Zahl eingeben."
          size_papka
          return
          break
@@ -2848,7 +2848,7 @@ if busybox test "$size_orig" -le "10485760"; then
          break;;
       *) clear
          echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Dem Menü entsprechende Zahl eingeben."
          size_papka
          return
          break;;
@@ -2856,7 +2856,7 @@ if busybox test "$size_orig" -le "10485760"; then
   done
  else
  echo
- echo ....."In \"$PWD\" keine Build-Ordner vorhanden."
+ echo ....."In \"$PWD\" kein Build-Ordner vorhanden."
  echo
  main_menu
  return
@@ -2880,9 +2880,9 @@ return
 
  if [ ! -z "$b" ]; then
  echo
- echo ".....Einen Ordner für die Wiederherstellung auswählen:"
+ echo ".....Ordner für die Wiederherstellung auswählen:"
  echo
- select menu in $b "Zurück zum Hauptmenü"; do
+ select menu in $b "Zurück zum Hauptmenü "; do
 case $REPLY in
  [1-9]*) i="$#"
 
@@ -2920,7 +2920,7 @@ if [ $(echo $?) -eq 0 ]; then
  else
  clear
  echo
- echo " Dem Menü entsprechenden Zahlen eingeben."
+ echo " Dem Menü entsprechende Zahlen eingeben."
  symlink
  return
  break
@@ -2928,7 +2928,7 @@ if [ $(echo $?) -eq 0 ]; then
  break;;
  *) clear
  echo
- echo " Dem Menü entsprechenden Zahlen eingeben."
+ echo " Dem Menü entsprechende Zahlen eingeben."
  symlink
  return
  break;;
@@ -2937,7 +2937,7 @@ if [ $(echo $?) -eq 0 ]; then
  else
  clear
  echo
- echo ....."In \"$PWD\" gibt keine Wiederherstellungsordner."
+ echo ....."In \"$PWD\" keine Wiederherstellungsordner vorhanden."
  echo
  main_menu
  return
@@ -2951,12 +2951,12 @@ return
              break ;;
          8 ) clear
              break ;;
-         *) echo "Nummer eingeben, die den Menüpunkten entspricht: sparse.img. erstellen" ;;
+         *) echo "Вводите цифру, соответствующую пунктам Menü: Сборка sparse.img." ;;
     esac
 done
 else
 echo
-echo ....."In \"$PWD\" gibt keine Build-Ordner."
+echo ....."В \"$PWD\" нет папок для сборки."
 echo
 main_menu
 return
@@ -2965,16 +2965,16 @@ return
 }
  my5
     break ;;          
-              #Ende der .img-Build-Funktion
+              #Ende .img-Build-Funktion
 
           8) clear
              my6(){
              file_size=${dir}/pack_img_dat
              check_dat="222"
              echo
-             echo "      Menü: Erstellen und Konvertieren in .dat"
+             echo "      Menü: .dat erstellen und konvertieren"
              echo
-select img in ".img -> .dat erstellen" ".img mit Größeneingabe erstellen -> .dat" ".img mit der Größe des Build-Ordners -> .dat erstellen" "N MB zur Größe hinzufügen und .img -> .dat erstellen" "\".img\" in \".dat\" umwandeln" "Zurück zum Hauptmenü " "Beenden"; do
+select img in "Собрать .img -> .dat" "Собрать .img с вводом размера -> .dat" "Собрать .img с размером папки для сборки -> .dat" "Добавить N mb к размеру и, собрать .img -> .dat" "Конвертировать \".img\" в \".dat\"" "Zurück zum Hauptmenü " "Завершение работы"; do
 case $REPLY in 
          1 ) clear
               nn
@@ -2997,7 +2997,7 @@ case $REPLY in
          5 )  clear
               my_k(){
              echo 
-             echo "..In den Ordner wechseln, in dem sich die Datei \".img\" befindet, zum Beispiel: cd /sdcard"
+             echo "..Перейдите в папку где находится файл \".img\", например: cd /sdcard"
 read b && $b
 if [ $(echo $?) -eq 0 ]; then
 clear
@@ -3013,9 +3013,9 @@ set -- $v
 
 if [ ! -z "$v" ]; then
 echo
-echo ".....Datei auswählen, die in \".dat\" konvertiert werden soll:"
+echo ".....Выберите файл для конвертации в \".dat\":"
 echo
-select menu in $v "Zurück zum Hauptmenü"; do
+select menu in $v "Zurück zum Hauptmenü "; do
 case $REPLY in
                   [1-9]*) i="$#"
                       let i=i+1
@@ -3035,7 +3035,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Dem Menü entsprechende Zahl eingeben."
          my_k
          return
          break
@@ -3043,7 +3043,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Dem Menü entsprechende Zahl eingeben."
          my_k
          return
          break;;
@@ -3051,7 +3051,7 @@ case $REPLY in
  done
  else
  echo
- echo ....."Im Ordner \"$nd\" sind keine \".img\"-Images zum Konvertieren vorhanden."
+ echo ....."В папке \"$nd\" нет образов \".img\" для конвертации."
  echo
  main_menu
 return
@@ -3075,7 +3075,7 @@ return
              break ;;
          7 ) clear
              break ;;
-         *) echo "Nummer eingeben, die den Elementen entspricht. Menü: Assemblierung und Konvertierung in .dat." ;;
+         *) echo "Вводите цифру, соответствующую пунктам Menü: Сборка и конвертация в .dat." ;;
     esac
 done
 return
@@ -3087,9 +3087,9 @@ return
             file_size=${dir}/pack_img_br
             check_dat="222"
             echo
-            echo "      Menü: Erstellen und Konvertieren in .br"
+            echo "      Menü: Сборка и конвертация в .br"
             echo
-select img in ".img -> .br erstellen" ".img mit Größeneingabe erstellen -> .br" ".img mit der Größe des Build-Ordners -> .br erstellen" "N MB zur Größe hinzufügen und .img -> .br erstellen" ".img in .br konvertieren" ".dat in .br konvertieren" "Zurück zum Hauptmenü " "Beenden"; do
+select img in "Собрать .img -> .br" "Собрать .img с вводом размера -> .br" "Собрать .img с размером папки для сборки -> .br" "Добавить N mb к размеру и собрать .img -> .br" "Конвертировать .img в .br" "Конвертировать .dat в .br" "Zurück zum Hauptmenü " "Завершение работы"; do
 case $REPLY in
           1 ) clear
               nn
@@ -3115,7 +3115,7 @@ case $REPLY in
              my_imgbr()
              {
              echo 
-             echo "..In den Ordner wechseln, in dem sich die Datei \".img\" befindet, zum Beispiel: cd /sdcard"
+             echo "..Перейдите в папку где находится файл \".img\", например: cd /sdcard"
 read b && $b
 if [ $(echo $?) -eq 0 ]; then
 clear
@@ -3133,7 +3133,7 @@ if [ ! -z "$v" ]; then
 echo
 echo ".....Datei zum Konvertieren auswählen:"
 echo
-select menu in $v "Zurück zum Hauptmenü"; do
+select menu in $v "Zurück zum Hauptmenü "; do
 case $REPLY in
                   [1-9]*) i="$#"
                       let i=i+1
@@ -3153,7 +3153,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          my_imgbr
          return
          break
@@ -3161,7 +3161,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          my_imgbr
          return
          break;;
@@ -3169,7 +3169,7 @@ case $REPLY in
  done
  else
  echo
- echo ....."Im Ordner \"$nd\" sind keine \".img\"-Images zum Konvertieren vorhanden."
+ echo ....."В папке \"$nd\" нет образов \".img\" для конвертации."
  echo
  main_menu
 return
@@ -3177,7 +3177,7 @@ return
 echo
 else
 echo
-echo ".....Fehler: Zum Verzeichnis navigieren fehlgeschlagen!"
+echo ".....error: Ошибка перехода в директорию!"
 echo
 echo ".....Verzeichnis richtig eingeben!"
 echo
@@ -3193,7 +3193,7 @@ return
              my_kbr(){
              
              echo 
-             echo "..In den Ordner wechseln, in dem sich die Datei \".dat\" befindet, zum Beispiel: cd /sdcard"
+             echo "..Перейдите в папку где находится файл \".dat\", например: cd /sdcard"
 read b && $b
 if [ $(echo $?) -eq 0 ]; then
 clear
@@ -3226,7 +3226,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          my_kbr
          return
          break
@@ -3234,7 +3234,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          my_kbr
          return
          break;;
@@ -3266,7 +3266,7 @@ return
              break ;;
          8 ) clear
              break ;;
-         *) echo "Nummer eingeben, die den Einträgen im Menü entspricht: new.dat in .br Konvertieren" ;;
+         *) echo "Вводите цифру, соответствующую пунктам Menü: Конвертация new.dat в .br" ;;
     esac
 done
 return
@@ -3276,14 +3276,14 @@ break ;;
           10) clear
              my8(){
              echo 
-             echo "      Menü: Konvertieren sparse > raw; raw > sparse"
+             echo "      Menü: Конвертация sparse > raw; raw > sparse"
              echo
-select img in "Konvertieren .img(raw) in .img (sparse)" "Konvertieren .img(sparse) in .img(raw)" "Zurück zum Hauptmenü " "Beenden"; do
+select img in "Конвертировать .img(raw) в .img (sparse)" "Конвертировать .img(sparse) в .img(raw)" "Zurück zum Hauptmenü " "Завершение работы"; do
 case $REPLY in 
          1 ) clear
              konv_img(){
              echo 
-             echo "..In den Ordner wechseln, in dem sich die Datei \".img(raw)\" befindet, zum Beispiel: cd /sdcard"
+             echo "..Перейдите в папку где находится файл \".img(raw)\", например: cd /sdcard"
 read b && $b
 if [ $(echo $?) -eq 0 ]; then
 clear
@@ -3318,7 +3318,7 @@ nd=$(echo $b | busybox awk '{ print $2 }' | busybox sed 's!^/!!')
  echo "...In /${nd} frei: $free_space"
  echo
 
- echo ".....Datei auswählen, die in \"sparse\" konvertiert werden soll:"
+ echo ".....Выберите файл для конвертации в \"sparse\":"
  echo
 select menu in $v "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -3339,7 +3339,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          konv_img
          return
          break
@@ -3347,7 +3347,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          konv_img
          return
          break;;
@@ -3355,7 +3355,7 @@ case $REPLY in
  done
  else
  echo
- echo ..."Es gibt keine zu konvertierenden \"raw\"-Images im \"/$nd\"-Ordner."
+ echo ..."В папке \"/$nd\" нет \"raw\" образов для конвертации."
  echo
  main_menu
 return
@@ -3363,9 +3363,9 @@ return
 echo
 else
 echo
-echo .....Fehler: Zum Verzeichnis navigieren fehlgeschlagen!
+echo .....error: Ошибка перехода в директорию!
 echo
-echo Das Verzeichnis richtig eingeben!
+echo Verzeichnis richtig eingeben!
 echo
 konv_img
 return
@@ -3377,7 +3377,7 @@ return
          2 ) clear
              konv_img(){
              echo 
-             echo "..In den Ordner wechseln, in dem sich die Datei \.img(sparse)\ befindet, zum Beispiel: cd /sdcard:"
+             echo "..Перейдите в папку где находится файл \".img(sparse)\", например: cd /sdcard:"
 read b && $b
 if [ $(echo $?) -eq 0 ]; then
 clear
@@ -3398,7 +3398,7 @@ if [ ! -z "$v" ]; then
  free_space="$(busybox df -h "$PWD" | busybox tail -1 |  busybox awk '{ print $(NF-2) }')"
  echo "...In /${nd} frei: $free_space"
  echo
- echo ".....Datei auswählen, die in \"raw\" konvertiert werden soll:"
+ echo ".....Выберите файл для конвертации в \"raw\":"
  echo
  select menu in $v "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -3419,7 +3419,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          konv_img
          return
          break
@@ -3427,7 +3427,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          konv_img
          return
          break;;
@@ -3435,7 +3435,7 @@ case $REPLY in
  done
  else
  echo
- echo ..."Es gibt keine zu konvertierenden \"sparse\"-Images im \"/$nd\"-Ordner."
+ echo ..."В папке \"/$nd\" нет \"sparse\" образов для конвертации."
  echo
  main_menu
 return
@@ -3443,9 +3443,9 @@ return
 echo
 else
 echo
-echo .....Fehler: Zum Verzeichnis navigieren fehlgeschlagen!
+echo .....error: Ошибка перехода в директорию!
 echo
-echo Verzeichnis richtig eingeben!
+echo Введите директорию правильно!
 echo
 konv_img
 return
@@ -3459,7 +3459,7 @@ return
              break ;;
          4 ) clear
              break ;;
-         *) echo "Nummer eingeben, die den Menüpunkten entspricht: Konvertieren sparse > raw; raw > sparse" ;;
+         *) echo "Вводите цифру, соответствующую пунктам Menü: Конвертация sparse > raw; raw > sparse" ;;
     esac
 done
 return
@@ -3470,16 +3470,16 @@ break ;;
              my2()
 {
             echo
-            echo "      Menü: Andere Werkzeuge"
+            echo "      Menü: Andere Tools"
             echo
            
-select img in "vbmeta-Patch" "Struktur einer AVB-Datei anzeigen" "Umwandeln .sin -> .img" "Konvertieren  .lz4" "Verbinden Sie das Image aus der Firmware unter Qfil" "Images aus payload.bin extrahieren" "Images aus UPDATE.APP extrahieren" "Images aus dem Speicherblock der aktuellen Firmware erstellen" "Entpacken (Konvertieren) von .ozip" "tar.md5 erstellen" "Firmware .img entpacken" "Firmware .ofp entpacken" "Zurück zum Hauptmenü " "Beenden"; do
+select img in "vbmeta-Patch" "Struktur einer AVB-Datei anzeigen" ".sin -> .img umwandeln" ".lz4 konvertieren" "Image aus der Firmware unter Qfil zusammenführen" "Images aus payload.bin extrahieren" "Images aus UPDATE.APP extrahieren" "Images aus dem Speicherblock der aktuellen Firmware erstellen" ".ozip entpacken (Konvertieren)" "tar.md5 erstellen" ".img Firmware entpacken" ".ofp Firmware entpacken" "Zurück zum Hauptmenü " "Beenden"; do
 case $REPLY in
           1 ) clear
              vbmeta()
 {
               echo
-              echo "..In den Ordner wechseln, in dem sich die Datei \"vbmeta.img\" befindet, zum Beispiel: cd /sdcard"
+              echo "..Перейдите в папку где находится файл \"vbmeta.img\", например: cd /sdcard"
  read b && $b
  if [ $(echo $?) -eq 0 ]; then
  clear
@@ -3551,7 +3551,7 @@ case $REPLY in
  fi
  else
  echo
- echo ".....Patch-Fehler /"$nd"/"$file""
+ echo "...../"$nd"/"$file" Patch-Fehler"
  echo
  fi
  fi
@@ -3571,7 +3571,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben."
          vbmeta
          return
          break
@@ -3579,7 +3579,7 @@ case $REPLY in
          break;;
    *) clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben."
          vbmeta
          return
          break ;;
@@ -3587,7 +3587,7 @@ case $REPLY in
  done
  else
  echo
- echo ....."Es gibt keine \"vbmeta\"-Dateien im Ordner \"/$nd\" für den Patch."
+ echo ....."В папке \"/$nd\" нет файлов \"vbmeta\" для патча."
  echo
  main_menu
 return
@@ -3610,7 +3610,7 @@ return
               vbmeta_info()
 {
               echo
-              echo "..In den Ordner wechseln, in dem sich die Datei \"*.img\" befindet, zum Beispiel: cd /sdcard"
+              echo "..In Ordner wechseln, in dem sich die Datei \"*.img\" befindet, zum Beispiel: cd /sdcard"
  read b && $b
  if [ $(echo $?) -eq 0 ]; then
  clear
@@ -3676,7 +3676,7 @@ f_avb=/data/local/binary/avb.txt
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben."
          vbmeta_info
          return
          break
@@ -3684,7 +3684,7 @@ f_avb=/data/local/binary/avb.txt
          break;;
    *) clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben."
          vbmeta_info
          return
          break ;;
@@ -3692,7 +3692,7 @@ f_avb=/data/local/binary/avb.txt
  done
  else
  echo
- echo ....."Keine \"*.img\"-Dateien im Ordner \"/$nd\""
+ echo ....."Keine \"*.img\"-Dateien im \"/$nd\"-Ordner"
  echo
  main_menu
 return
@@ -3720,7 +3720,7 @@ return
 sin_img()
 {
               echo
-              echo "..In den Ordner wechseln, in dem sich die Datei \".sin\" befindet, zum Beispiel: cd /sdcard"
+              echo "..In Ordner wechseln, in dem sich die Datei \".sin\" befindet, zum Beispiel: cd /sdcard"
 read b && $b
 if [ $(echo $?) -eq 0 ]; then
 clear
@@ -3779,7 +3779,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          sin_img
          return
          break
@@ -3787,7 +3787,7 @@ case $REPLY in
          break;;
    *) clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          sin_img
          return
          break;;
@@ -3817,16 +3817,16 @@ sin_img
         
           4 ) clear
              echo
-            echo "      Menü: Konvertieren .lz4"
+            echo "      Menü: Конвертация .lz4"
             echo
-select img in "Extrahieren von .lz4" "Komprimieren zu .lz4" "Zurück zum Hauptmenü " "Beenden"; do
+select img in "Извлечение из .lz4" "Сжатие в .lz4" "Zurück zum Hauptmenü " "Завершение работы"; do
 case $REPLY in 
          1 ) clear
              
              decomp_lz4()
 {
               echo
-              echo "..In den Ordner wechseln, in dem sich die \".lz4\"-Datei befindet, zum Beispiel: cd /sdcard"
+              echo "..Перейдите в папку где находится файл \".lz4\", например: cd /sdcard"
 read b && $b
 if [ $(echo $?) -eq 0 ]; then
 clear
@@ -3879,7 +3879,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          decomp_lz4
          return
          break
@@ -3887,7 +3887,7 @@ case $REPLY in
          break;;
    *) clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          decomp_lz4
          return
          break;;
@@ -3895,7 +3895,7 @@ case $REPLY in
  done
  else
  echo
- echo ....."Im Ordner \"/$nd\"  sind keine \".lz4\"-Dateien zum Konvertieren vorhanden."
+ echo ....."В папке \"/$nd\" нет файлов \".lz4\" для конвертации."
  echo
  main_menu
 return
@@ -3903,9 +3903,9 @@ return
 echo
 else
 echo
-echo .....Fehler: Zum Verzeichnis navigieren fehlgeschlagen!
+echo .....error: Ошибка перехода в директорию!
 echo
-echo Verzeichnis richtig eingeben!
+echo Введите директорию правильно!
 echo
 decomp_lz4
 return
@@ -3919,7 +3919,7 @@ decomp_lz4
              comp_lz4()
 {
               echo
-              echo "..In den Ordner wechseln, in dem sich die Datei \".img\ befindet, zum Beispiel: cd /sdcard"
+              echo "..Перейдите в папку где находится файл \".img\", например: cd /sdcard"
 read b && $b
 if [ $(echo $?) -eq 0 ]; then
 clear
@@ -3952,7 +3952,7 @@ mc(){
 read b
 if [ "$b" -le "9" ]; then
 echo
-echo ".....Konvertieren in "$file".lz4...Warten..."
+echo ".....In "$file".lz4 konvertieren,...Warten..."
 echo
 lz4 -"$b" -f $file
 if [ $(echo $?) -eq 0 ] ; then
@@ -4006,7 +4006,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          comp_lz4
          return
          break
@@ -4014,7 +4014,7 @@ case $REPLY in
          break;;
    *) clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          comp_lz4
          return
          break ;;
@@ -4022,7 +4022,7 @@ case $REPLY in
  done
  else
  echo
- echo ....."Es gibt keine zu konvertierenden \".img\"-Dateien im Ordner \"/$nd\"."
+ echo ....."В папке \"/$nd\" нет файлов \".img\" для конвертации."
  echo
  main_menu
 return
@@ -4030,9 +4030,9 @@ fi
 echo
 else
 echo
-echo .....Fehler: Zum Verzeichnis navigieren fehlgeschlagen!
+echo .....error: Ошибка перехода в директорию!
 echo
-echo Verzeichnis richtig eingeben!
+echo Введите директорию правильно!
 echo
 comp_lz4
 return
@@ -4060,11 +4060,11 @@ if [ -f ./$obraz ]; then
 busybox test "$size" -lt "$size_obraz"
 if [ "$?" -eq "0" ]; then
 busybox truncate -s $size_obraz ./$obraz
-echo " .....Empfangenes Image \"$obraz\" mit der Größe: $size_obraz Bytes."
-echo ".....Gespeichert unter /data/local/UnpackerQfil"
+echo " .....Получен образ \"$obraz\" с размером: $size_obraz байт."
+echo ".....Сохранено в /data/local/UnpackerQfil"
 else
-echo " .....Empfangenes Image \"$image\" mit Größe: $size Bytes."
-echo ".....Gespeichert unter /data/local/UnpackerQfil"
+echo " .....Получен образ \"$obraz\" с размером: $size байт."
+echo ".....Сохранено в /data/local/UnpackerQfil"
 fi
 fi
 }
@@ -4074,11 +4074,11 @@ fi
 
  free_space="$(busybox df -h /data/local/UnpackerQfil | busybox tail -1 |  busybox awk '{ print $(NF-2) }')"
  echo
- echo "     Legen Sie im Ordner: /data/local/UnpackerQfil alle \"system_xx|vendor_xx|userdata_xx\"-Dateien und alle \".xml\"-Dateien, die mit \"rawprogram*\" oder \"super|system|vendor. img_sparsechunk.*\"ab."
+ echo "     Положите в папку: /data/local/UnpackerQfil все файлы \"system_xx|vendor_xx|userdata_xx\" и все файлы \".xml\", начинающиеся на \"rawprogram*\", либо файлы  \"super|system|vendor.img_sparsechunk.*\"."
  echo
- echo "...In /data/local/UnpackerQfil frei: $free_space"
+ echo "...В /data/local/UnpackerQfil свободно: $free_space"
  echo
- select img in "Verbinden" "Zurück zum Hauptmenü " "Beenden"; do
+ select img in "Склеить" "Zurück zum Hauptmenü " "Завершение работы"; do
 case $REPLY in 
          1 ) clear
              cd /data/local/UnpackerQfil
@@ -4089,7 +4089,7 @@ case $REPLY in
  if [ ! -z "$(busybox ls *sparsechunk* 2> /dev/null)" ]; then
 
  echo
- echo ".....Dateien gefunden\"*sparsechunk*\""
+ echo ".....Найдены файлы \"*sparsechunk*\""
  echo
  for name in "super." "super_" "system." "system_" "vendor." "vendor_" "product." "product_"; do
  name1=$(busybox find . -name "${name}*sparsechunk.*[0-9]" -a ! -name "${name}*sparsechunk.*[0-9][0-9]" | sort -n)
@@ -4098,16 +4098,16 @@ case $REPLY in
  mkdir ./output 2> /dev/null
  name_out=$(echo $name1 | busybox sed 's!./!!' | busybox awk -F"img" '{ print $1 }')
  #echo
- echo ".....Verbinden ${name_out}sparsechunk.raw.img..."
+ echo ".....Склейка ${name_out}sparsechunk.raw.img..."
  simg2img ${name1} ${name2} ./output/${name_out}sparsechunk.raw.img
  if [ "$?" -eq "0" ]; then
  #echo
- echo ".....Datei erfolgreich erstellt ${name_out}sparsechunk.raw.img"
- echo ".....Gespeichert unter /data/local/UnpackerQfil/output"
+ echo ".....Успешно создан файл ${name_out}sparsechunk.raw.img"
+ echo ".....Сохранено в /data/local/UnpackerQfil/output"
  echo
  else
  echo
- echo ".....Verbindungsfehler ${name}sparsechunk.raw.img!"
+ echo ".....Ошибка при склейке ${name}sparsechunk.raw.img!"
  echo
  fi
  fi
@@ -4138,13 +4138,13 @@ case $REPLY in
  check_name="$(busybox cat $rab_file | busybox awk -v var="$name" -F"filename=" '$2 ~ var { print $2}' | busybox cut -d" " -f1 | busybox sed '1!d; s!"!!g')"
  if [ -f ./$check_name ]; then
  echo
- echo ".....Datei gefunden ${rab_file}"
- echo ".....Zusammenführen von $image mit $rab_file..."
+ echo ".....Найден файл ${rab_file}"
+ echo ".....Склейка $obraz c использованием файла $rab_file..."
  python39 /data/local/binary/bin_system/qfil1.py /data/local/UnpackerQfil/"$rab_file" "$name"
   if [ "$?" -eq "0" ]; then
  resize_img
              else
-             echo ".....Fehler aufgetreten"
+            echo ".....Fehler aufgetreten"
              echo
              fi
             else
@@ -4159,7 +4159,7 @@ case $REPLY in
   done
              else
              echo
-             echo ".....Es gibt keine Dateien zum Verbinden in /data/local/UnpackerQfil"
+            echo ".....Es gibt keine Dateien zum Verbinden in /data/local/UnpackerQfil"
              fi
              main_menu
              break ;;
@@ -4170,7 +4170,7 @@ case $REPLY in
                break ;;
          *) clear
             echo
-            echo "      Geben Sie die diesem Menü entsprechenden Nummern ein."
+            echo "      Geben Sie die diesem Menü entsprechende Nummer ein."
               qfil_img
               break ;;
     esac
@@ -4212,19 +4212,19 @@ case $REPLY in
          if [ ! -z "$file" -a "$REPLY" -lt "$i" ]; then
  clear
               echo
-              echo ".....Extrahieren von /$nd/$file..."
+              echo "...../$nd/$file extrahieren..."
               echo
  #python39 /data/local/binary/bin_payload/extract_payload-master/extract_payload.py ./payload.bin /data/local/UnpackerPayload
 
  payload-dumper -c 8 -o /data/local/UnpackerPayload "$file"
  if [ $(echo $?) -eq 0 ]; then
  echo
- echo ".....Images erfolgreich abgerufen!"
- echo ".....Gespeichert unter /data/local/UnpackerPayload!"
+ echo ".....Образы успешно извлечены!"
+ echo ".....Сохранено в /data/local/UnpackerPayload!"
  echo
  else
  echo
- echo ".....Extraktionsfehler!"
+ echo ".....Ошибка при извлечении!"
  echo
  fi
          main_menu
@@ -4238,7 +4238,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          payload
          return
          break
@@ -4246,7 +4246,7 @@ case $REPLY in
          break;;
    *) clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben. "
          payload
          return
          break ;;
@@ -4254,7 +4254,7 @@ case $REPLY in
  done
  else
  echo
- echo ....."Es gibt keine \".bin\"-Dateien im \"/$nd\"-Ordner, um Images zu extrahieren."
+ echo ....."В папке \"/$nd\" нет файлов \".bin\" для извлечения образов."
  echo
  main_menu
 return
@@ -4262,9 +4262,9 @@ fi
 echo
 else
 echo
-echo .....Fehler: Zum Verzeichnis navigieren fehlgeschlagen!
+echo .....error: Ошибка перехода в директорию!
 echo
-echo Verzeichnis richtig eingeben!
+echo Введите директорию правильно!
 echo
 payload
 return
@@ -4278,9 +4278,9 @@ return
              update_app()
 {
               echo
-              echo "         UPDATE.APP extrahieren     "
+              echo "         Извлечение из UPDATE.APP     "
               echo
-              echo "..In den Ordner wechseln, in dem sich die Datei \"*.app\" befindet, zum Beispiel: cd /sdcard"
+              echo "..Перейдите в папку где находится файл \"*.app\", например: cd /sdcard"
 read b && $b
 if [ $(echo $?) -eq 0 ]; then
 clear
@@ -4299,7 +4299,7 @@ set -- $v
 
 if [ ! -z "$v" ]; then
 echo
-echo ".....Eine Datei auswählen:"
+echo ".....Выберите файл:"
 echo
 select menu in $v "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -4309,7 +4309,7 @@ case $REPLY in
          if [ ! -z "$file" -a "$REPLY" -lt "$i" ]; then
  clear
               echo
-              echo ".....Extrahieren aus /$nd/$file..."
+              echo ".....Извлечение из /$nd/$file..."
               echo
  python39 /data/local/binary/bin_system/splitapp_v2.py -f "$file" -o /data/local/UnpackerUpdateApp
 
@@ -4318,27 +4318,27 @@ case $REPLY in
  napp=$(busybox find -name "super_[0-9].img" -type f | sort -n)
  if [ ! -z "$napp" ]; then
  echo
- echo ".....Defekte super.img reparieren..."
+ echo ".....Склеиваем разбитый на части super.img..."
  simg2img ${napp} super.raw.img
  if [ $(echo $?) -eq 0 ]; then
 echo
- echo ".....Images erfolgreich abgerufen!"
- echo ".....Gespeichert unter /data/local/UnpackerUpdateApp!"
+ echo ".....Образы успешно извлечены!"
+ echo ".....Сохранено в /data/local/UnpackerUpdateApp!"
  echo
  else
  echo
- echo ".....Einfügefehler!"
+ echo ".....Ошибка при склеивании!"
  echo
 fi
  else
  echo
- echo ".....Images erfolgreich abgerufen!"
- echo ".....Gespeichert unter /data/local/UnpackerUpdateApp!"
+ echo ".....Образы успешно извлечены!"
+ echo ".....Сохранено в /data/local/UnpackerUpdateApp!"
  echo
  fi
  else
  echo
- echo ".....Extraktionsfehler!"
+ echo ".....Ошибка при извлечении!"
  echo
  fi
          main_menu
@@ -4352,7 +4352,7 @@ fi
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
          update_app
          return
          break
@@ -4360,7 +4360,7 @@ fi
          break;;
    *) clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
          update_app
          return
          break ;;
@@ -4368,7 +4368,7 @@ fi
  done
  else
  echo
- echo ....."Im \"/$nd\"-Ordner gibt es keine \".app\"-Dateien zum Extrahieren von Images."
+ echo ....."В папке \"/$nd\" нет файлов \".app\" для извлечения образов."
  echo
  main_menu
 return
@@ -4376,9 +4376,9 @@ fi
 echo
 else
 echo
-echo .....Fehler: Zum Verzeichnis navigieren fehlgeschlagen!
+echo .....error: Ошибка перехода в директорию!
 echo
-echo Verzeichnis richtig eingeben!
+echo Введите директорию правильно!
 echo
 update_app
 return
@@ -4398,7 +4398,7 @@ return
 {
              cd
              echo 
-             echo "...In den Ordner wechseln, in dem sich die Dateien befinden: \".ozip\", zum Beispiel: cd /sdcard"
+             echo "...Перейдите в папку где находятся файлы: \".ozip\", например: cd /sdcard"
  read b && $b
  if [ $(echo $?) -eq 0 ]; then
  nd=$(echo $b | busybox awk '{ print $2 }')
@@ -4413,7 +4413,7 @@ return
  set -- $v
  if [ ! -z "$v" ]; then
  echo
- echo ".....Datei auswählen:"
+ echo ".....Выберите файл:"
  echo
  select menu in $v "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -4426,11 +4426,11 @@ case $REPLY in
         python39 /data/local/binary/bin_system/ozipdecrypt.py "$file"
    if [ $(echo $?) -eq 0 ]; then
  echo
- echo ".....Erfolgreich abgeschlossen!"
+ echo ".....Успешно завершено!"
  echo
  else
  echo
- echo ".....Fehler: Es ist ein Fehler aufgetreten!"
+ echo ".....error: Возникла ошибка!"
  echo
  fi
          main_menu
@@ -4444,7 +4444,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
          ss_ozip
          return
          break
@@ -4452,7 +4452,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
          ss_ozip
          return
          break;;
@@ -4460,7 +4460,7 @@ case $REPLY in
  done
  else
  echo
- echo ".....Es gibt keine \".ozip\"-Dateien im \"$nd\"-Ordner"."
+ echo ".....В папке \"$nd\" нет файлов \".ozip\"."
  echo
  main_menu
 return
@@ -4470,9 +4470,9 @@ return
  ss_ozip
  else
  echo
- echo ".....Fehler: Zum Verzeichnis navigieren fehlgeschlagen!"
+ echo ".....error: Ошибка перехода в директорию!"
  echo
- echo "Verzeichnis richtig eingeben!"
+ echo "Введите директорию правильно!"
  echo
  my_ozip
  return
@@ -4486,9 +4486,9 @@ return
              comp_md5()
 {
               echo
-              echo "         tar.md5 erstellen     "
+              echo "         Создание tar.md5     "
               echo
-              echo "..In den Ordner wechseln, in dem sich die \"*.img\"- oder \"*.zip\"-Datei befindet, zum Beispiel: cd /sdcard"
+              echo "..Перейдите в папку где находится файл \"*.img\" или \"*.zip\", например: cd /sdcard"
 read b && $b
 if [ $(echo $?) -eq 0 ]; then
 clear
@@ -4500,7 +4500,7 @@ set -- $v
 
 if [ ! -z "$v" ]; then
 echo
-echo ".....Datei auswählen:"
+echo ".....Выберите файл:"
 echo
 select menu in $v "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -4514,11 +4514,11 @@ case $REPLY in
  busybox tar -cf "$file".tar "$file" && busybox md5sum "$file_tar" >> "$file_tar" && busybox mv "$file_tar" "$file_tar".md5
  if [ $(echo $?) -eq 0 ]; then
  echo
- echo ".....Datei erfolgreich erstellt: "$file_tar".md5"
+ echo ".....Успешно создан файл: "$file_tar".md5"
  echo
  else
  echo
- echo ".....Fehler beim Erstellen "$file_tar".md5!"
+ echo ".....Ошибка при создании "$file_tar".md5!"
  echo
  fi
          main_menu
@@ -4532,7 +4532,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
          comp_md5
          return
          break
@@ -4540,7 +4540,7 @@ case $REPLY in
          break;;
    *) clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
          comp_md5
          return
          break ;;
@@ -4548,7 +4548,7 @@ case $REPLY in
  done
  else
  echo
- echo ....."Im \"$nd\"-Ordner sind keine \".img\" -Dateien zum Konvertieren vorhanden."
+ echo ....."В папке \"$nd\" нет файлов \".img\" для конвертации."
  echo
  main_menu
 return
@@ -4556,9 +4556,9 @@ fi
 echo
 else
 echo
-echo .....Fehler: Zum Verzeichnis navigieren fehlgeschlagen!
+echo .....error: Ошибка перехода в директорию!
 echo
-echo Verzeichnis richtig eingeben!
+echo Введите директорию правильно!
 echo
 comp_md5
 return
@@ -4572,18 +4572,18 @@ return
               rokchip_extract()
 {
               echo
-              echo "         Entpacken der Firmware .img     "
+              echo "         Распаковка прошивок .img     "
               
   rok_dir="/data/local/UnpackerSystem"
 
               echo
-              echo "..In den Ordner wechseln, in dem sich die Firmware-Datei \".img\" befindet, zum Beispiel: cd /sdcard"
+              echo "..Перейдите в папку где находится файл прошивки \".img\", например: cd /sdcard"
 read b && $b
 if [ $(echo $?) -eq 0 ]; then
 clear
 nd=$(echo $b | busybox awk '{ print $2 }' | busybox sed 's!^/!!')
 echo
-echo ".....Dateisuche..."
+echo ".....Поиск файлов..."
 
  v=$(for a in $(busybox find . -maxdepth 1 -name '*.img' -type f | busybox sed 's!./!!'); do
     
@@ -4611,7 +4611,7 @@ case $REPLY in
   
   if [ -d "$rok_dir"/"$name_rok" -a "$rok_dir"/"$name_rok" != "$rok_dir"/ ]; then
           echo
-          echo ".....Alten Ordner entfernen: "$rok_dir"/"$name_rok""
+          echo ".....Удаление старой папки: "$rok_dir"/"$name_rok""
           busybox rm -rf "$rok_dir"/"$name_rok"
           
   fi
@@ -4620,9 +4620,9 @@ case $REPLY in
  if [ "$(busybox hexdump -C -n 20 /"$nd"/"$file" | busybox grep -Eo "52 4b 46 57 66|52 4b 41 46")" ]; then
 
               echo
-              echo ".....Magic Rockchip erkannt..."
+              echo ".....Detected Magic Rockchip..."
               echo
-              echo ".....Extrahieren von /$nd/$file..."
+              echo ".....Извлечение из /$nd/$file..."
               echo
     if [ ! -z "$(busybox hexdump -C -n 20 /"$nd"/"$file" | busybox grep -o "52 4b 46 57 66")" ]; then
  busybox mkdir "$rok_dir"/"$name_rok" 2> /dev/null
@@ -4638,18 +4638,18 @@ echo "rkfwf" > "$rok_dir"/"$name_rok"/conf
  afptool -unpack update.img .
  if [ -s "$(busybox find "$rok_dir"/"$name_rok" -name "parameter*" | busybox head -1)" ]; then
  echo
- echo ".....Images erfolgreich abgerufen!"
- echo ".....Gespeichert unter "$rok_dir"/"$name_rok""
+ echo ".....Образы успешно извлечены!"
+ echo ".....Сохранено в "$rok_dir"/"$name_rok""
  echo
  else
  echo
- echo ".....Fehler! Extraktionsfehler!"
+ echo ".....Error! Ошибка при извлечении!"
  echo
  fi
  #fi
  else
  echo
- echo ".....Fehler! Extrahieren fehlgeschlagen, keine update.img!"
+ echo ".....Error! Ошибка при извлечении, нет update.img!"
  echo
  fi
 
@@ -4663,12 +4663,12 @@ echo "rkaf" > "$rok_dir"/"$name_rok"/conf
  afptool -unpack update.img .
  if [ -s "$(busybox find "$rok_dir"/"$name_rok" -name "parameter*" | busybox head -1)" ]; then
  echo
- echo ".....Images erfolgreich abgerufen!"
- echo ".....Gespeichert unter "$rok_dir"/"$name_rok""
+ echo ".....Образы успешно извлечены!"
+ echo ".....Сохранено в "$rok_dir"/"$name_rok""
  echo
  else
  echo
- echo ".....Fehler! Extraktionsfehler!"
+ echo ".....Error! Ошибка при извлечении!"
  echo
  fi
  fi
@@ -4679,9 +4679,9 @@ echo "rkaf" > "$rok_dir"/"$name_rok"/conf
    elif [ "$(busybox hexdump -C -n 3000 /"$nd"/"$file" | busybox grep -o "49 4d 41 47 45 57 54 59")" ]; then
               clear
               echo
-              echo ".....Magic Allwinner entdecken..."
+              echo ".....Detected Magic Alwinner..."
               echo
-              echo ".....Extrahieren von /$nd/$file..."
+              echo ".....Извлечение из /$nd/$file..."
               echo
  busybox cp -f /"$nd"/"$file" "$rok_dir"/"$file"
  cd "$rok_dir"
@@ -4689,33 +4689,33 @@ echo "rkaf" > "$rok_dir"/"$name_rok"/conf
  if [ $(echo $?) -eq 0 ]; then
  busybox mv -f /"$rok_dir"/"$name_rok".img.dump /"$rok_dir"/"$name_rok"
  echo
- echo ".....Images erfolgreich abgerufen!"
- echo ".....Gespeichert unter "$rok_dir"/"$name_rok""
+ echo ".....Образы успешно извлечены!"
+ echo ".....Сохранено в "$rok_dir"/"$name_rok""
  echo
  busybox rm -f "$file"
  else
  echo
- echo ".....Fehler! Extrahieren fehlgeschlagen!"
+ echo ".....Error! Ошибка при извлечении!"
  echo
  fi
 
  elif [ "$(busybox hexdump -C -n 3000 /"$nd"/"$file" | busybox grep -o "56 19 b5 27")" ]; then
               clear
               echo
-              echo ".....Magic Amlogic entdeckt..."
+              echo ".....Detected Magic Amlogic..."
               echo
-              echo ".....Gespeichert unter /$nd/$file..."
+              echo ".....Извлечение из /$nd/$file..."
               echo
  busybox mkdir "$rok_dir"/"$name_rok" 2> /dev/null
  aml_image_v2_packer -d /"$nd"/"$file" "$rok_dir"/"$name_rok"
  if [ $(echo $?) -eq 0 ]; then
  echo
- echo ".....Images erfolgreich abgerufen!"
- echo ".....Gespeichert unter "$rok_dir"/"$name_rok""
+ echo ".....Образы успешно извлечены!"
+ echo ".....Сохранено в "$rok_dir"/"$name_rok""
  echo
  else
  echo
- echo ".....Fehler! Extraktionsfehler!"
+ echo ".....Error! Ошибка при извлечении!"
  echo
  fi
    fi
@@ -4731,7 +4731,7 @@ echo "rkaf" > "$rok_dir"/"$name_rok"/conf
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Dem Menü entsprechende Zahl eingeben."
          rokchip_extract
          return
          break
@@ -4739,7 +4739,7 @@ echo "rkaf" > "$rok_dir"/"$name_rok"/conf
          break;;
    *) clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Dem Menü entsprechende Zahl eingeben."
          rokchip_extract
          return
          break ;;
@@ -4748,7 +4748,7 @@ echo "rkaf" > "$rok_dir"/"$name_rok"/conf
  else
  clear
  echo
- echo ....."Es gibt keine Firmware \".img\" im Ordner \"/$nd\", um Images zu extrahieren."
+ echo ....."В папке \"/$nd\" нет прошивок \".img\" для извлечения образов."
  echo
  main_menu
 return
@@ -4756,9 +4756,9 @@ fi
 echo
 else
 echo
-echo .....Fehler: Zum Verzeichnis navigieren fehlgeschlagen!
+echo .....error: Ошибка перехода в директорию!
 echo
-echo Verzeichnis richtig eingeben!
+echo Введите директорию правильно!
 echo
 rokchip_extract
 return
@@ -4782,9 +4782,9 @@ set -- $b
 
 if [ ! -z "$b" ]; then
 echo
-echo ".....Build-Ordner auswählen:"
+echo ".....Выберите папку для сборки:"
 echo
-select menu in $b "Zurück zum Hauptmenü " "Beenden"; do
+select menu in $b "Zurück zum Hauptmenü " "Завершение работы"; do
 case $REPLY in
                  [1-9]*) i="$#"
                       j="$#"
@@ -4807,7 +4807,7 @@ done
  if [ ! -z "$load" ]; then
  clear
  echo
- echo ".....firmware .img builden..."
+ echo ".....Сборка прошивки .img..."
  echo
  busybox sleep 2
 
@@ -4836,7 +4836,7 @@ afptool -pack "$name_rok" update.new.img
       
       elif [ -s "$name_rok"/image.cfg ]; then
       echo
-      echo ".....Firmware .img erstellen..."
+      echo "...... .img Firmware erstellen..."
       echo
       busybox sleep 2
       aml_image_v2_packer -r "$name_rok"/image.cfg "$rok_dir"/"$name_rok" "$outdir"/"$name_rok".new.img
@@ -4846,7 +4846,7 @@ afptool -pack "$name_rok" update.new.img
  echo
  else
  echo
- echo ".....Fehler beim Erstellen des geteilten Images!"
+ echo ".....Ошибка при сборке общего образа!"
  echo
  fi
       fi
@@ -4865,7 +4865,7 @@ afptool -pack "$name_rok" update.new.img
        else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Dem Menü entsprechende Zahl eingeben."
          rokchip_pack
          return
          break
@@ -4873,7 +4873,7 @@ afptool -pack "$name_rok" update.new.img
          break;;
       *) clear
          echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Dem Menü entsprechende Zahl eingeben."
          rokchip_pack
          return
          break;;
@@ -4894,9 +4894,9 @@ return
   {
  if [ ! -z "$(getprop ro.product.cpu.abilist64)" ]; then
               echo
-              echo "         Firmware .img entpacken     "
+              echo "         .img Firmware entpacken     "
               echo
- select img in "Firmware .img entpacken" "Zurück zum Hauptmenü " "Beenden"; do
+ select img in "Распаковать прошивку .img" "Zurück zum Hauptmenü " "Завершение работы"; do
 case $REPLY in 
                 1 ) clear
                     rokchip_extract
@@ -4908,7 +4908,7 @@ case $REPLY in
                      break ;;
                 * ) clear
             echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
             echo
             menu_rok
               break ;;
@@ -4916,7 +4916,7 @@ esac
 done
  else
  echo
- echo ".....Bedienung des Menüpunkts \"Repacking .img-Firmware\" wird von 32-Bit-Firmware nicht unterstützt!"
+ echo ".....Работа пункта Menü: \"Перепаковка прошивок .img\" не поддерживается на 32-битной прошивке!"
   echo
     main_menu
  fi
@@ -4940,7 +4940,7 @@ v="$(busybox cat "$m_name"/super_map.csv | busybox awk -F"," '! /nv_text/ { prin
  fi
 set -- $v
 echo
-echo ".....Eine Region zum Verbinden von super.raw.img auswählen:"
+echo ".....Выберите регион для склейки super.raw.img:"
 echo
 select menu in $v "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -4960,7 +4960,7 @@ case $REPLY in
 
  clear
  echo
- echo ".....$f_out zusammführen, wir warten..."
+ echo ".....Склейка $f_out, Ждём..."
  chmod 755 ./pack.sh && ./pack.sh
  if [ $(echo $?) -eq 0 ]; then
    echo
@@ -4969,7 +4969,7 @@ case $REPLY in
   return
   else
    echo
-   echo ".....Fehler beim Zusammenführen von super.raw.img!"
+   echo ".....Fehler beim super.raw.img zuammenführen!"
    echo
    return
   fi
@@ -4982,7 +4982,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben."
          aa
          return
          break
@@ -4990,7 +4990,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Dem Menü entsprechende Zahl eingeben."
         aa
          return
          break;;
@@ -5017,11 +5017,11 @@ return
 
   if [ ! -z "$(busybox cat log.txt | busybox grep -E "Files successfully|Done. Extracted")" ]; then
    echo
-   echo ".....Imges erfolgreich extrahiert nach /data/local/UnpackerSystem/$m_name"
+   echo ".....Образы успешно извлечены в /data/local/UnpackerSystem/$m_name"
    echo
   else
    echo
-   echo ".....Extraktionsfehler!"
+   echo ".....Ошибка при извлечении!"
    echo
   fi
 
@@ -5029,7 +5029,7 @@ return
  if [ ! -z "$check_sup" ]; then
  #>super_simg
  echo
- echo ".....Super.img in Stücke gerissen gefunden!"
+ echo ".....Super.img in Stücke geteilt gefunden!"
  if [ "$check_pack" == "0" ]; then
  #i=0
  echo "$check_sup" | while read a; do
@@ -5059,7 +5059,7 @@ return
    echo
   else
    echo
-   echo ".....Fehler beim Zusammenführen von super.raw.img!"
+   echo ".....super.raw.img Fehler beim Zusammenführen!"
    echo
   fi
  fi
@@ -5067,7 +5067,7 @@ return
  aa
  else
  echo
- echo ".....Es gibt keine Datei zum reparieren nach Region!"
+ echo ".....Нет файла для склейки по регионам!"
  echo
   fi
   fi
@@ -5079,18 +5079,18 @@ return
 ofp_extract()
 {
               echo
-              echo "         Firmware .ofp entpacken     "
+              echo "         .ofp Firmware entpacken     "
               
   ofp_dir="/data/local/UnpackerSystem"
 
               echo
-              echo "..In den Ordner wechseln, in dem sich die Firmware-Datei \".ofp\" befindet, zum Beispiel: cd /sdcard"
+              echo "..Перейдите в папку где находится файл прошивки \".ofp\", например: cd /sdcard"
 read b && $b
 if [ $(echo $?) -eq 0 ]; then
 clear
 nd=$(echo $b | busybox awk '{ print $2 }' | busybox sed 's!^/!!')
 echo
-echo ".....Dateisuche..."
+echo ".....Поиск файлов..."
 
  v=$(for a in $(busybox find . -maxdepth 1 -name '*.ofp' -type f | busybox sed 's!./!!'); do
      echo "$a"
@@ -5101,7 +5101,7 @@ set -- $v
 if [ ! -z "$v" ]; then
 clear
 echo
-echo ".....Datei auswählen:"
+echo ".....Выберите файл:"
 echo
 select menu in $v "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -5115,7 +5115,7 @@ file=/"$nd"/"$file"
   
   if [ -d "$ofp_dir"/"$name_ofp" -a "$ofp_dir"/"$name_ofp" != "$ofp_dir"/ ]; then
           echo
-          echo ".....Alten Ordner entfernen: "$ofp_dir"/"$name_ofp""
+          echo ".....Удаление старой папки: "$ofp_dir"/"$name_ofp""
           busybox rm -rf "$ofp_dir"/"$name_ofp"
           fi
          ofp
@@ -5131,7 +5131,7 @@ file=/"$nd"/"$file"
         else
         clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Dem Menü entsprechende Zahl eingeben."
          ofp_extract
          return
          break
@@ -5139,7 +5139,7 @@ file=/"$nd"/"$file"
          break;;
    *) clear
         echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben."
+            echo "      Dem Menü entsprechende Zahl eingeben."
          ofp_extract
          return
          break ;;
@@ -5148,7 +5148,7 @@ file=/"$nd"/"$file"
  else
  clear
  echo
- echo ....."Es gibt keine \".ofp\"-Firmware im \"/$nd\"-Ordner zum Extrahieren von Images."
+ echo ....."В папке \"/$nd\" нет прошивок \".ofp\" для извлечения образов."
  echo
  main_menu
 return
@@ -5169,9 +5169,9 @@ return
  menu_ofp()
   {
               echo
-              echo "         Firmware .ofp entpacken     "
+              echo "         .ofp Firmware entpacken     "
               echo
- select img in "Распаковать прошивку .ofp" "Zurück zum Hauptmenü " "Beenden"; do
+ select img in "Распаковать прошивку .ofp" "Zurück zum Hauptmenü " "Завершение работы"; do
 case $REPLY in 
                 #1 ) #clear
                     #check_pack=0
@@ -5190,7 +5190,7 @@ case $REPLY in
                      break ;;
                 * ) clear
             echo
-            echo "      Dem Menü entsprechenden Zahlen eingeben. "
+            echo "      Geben Sie die dem Menü entsprechenden Zahlen ein. "
             echo
             menu_ofp
               break ;;
@@ -5207,7 +5207,7 @@ esac
              break ;;
          14 ) clear
              break ;;
-         *) echo "Nummer eingeben, die den Elementen im Menü: Andere Tools entspricht" ;;
+         *) echo "Вводите цифру, соответствующую пунктам Menü: Прочие инструменты" ;;
     esac
 done
 return
@@ -5233,7 +5233,7 @@ return
             echo -en "\E[37;0m"
             echo -en "\E[37;1m"
             echo
-select img in "Leerer Ordner: /data/local/UnpackerSystem" "Leerer Ordner: /data/local/UnpackerQfil" "Leerer Ordner: /data/local/UnpackerContexts" "Leerer Ordner: /data/local/UnpackerPayload" "Leerer Ordner: /data/local/UnpackerSuper" "Leerer Ordner: /data/local/UnpackerUpdateApp" "Leerer Ordner: /data/local/UnpackerPreloader" "Alle Ordner auf einmal löschen" "Zurück zum Hauptmenü" "Beenden"; do
+select img in "Leerer Ordner: /data/local/UnpackerSystem" "Leerer Ordner: /data/local/UnpackerQfil" "Leerer Ordner: /data/local/UnpackerContexts" "Leerer Ordner: /data/local/UnpackerPayload" "Leerer Ordner: /data/local/UnpackerSuper" "Leerer Ordner: /data/local/UnpackerUpdateApp" "Leerer Ordner: /data/local/UnpackerPreloader" "Alle Ordner auf einmal löschen" "Zurück zum Hauptmenü" "Herunterfahren"; do
 case $REPLY in 
          1 ) clear
              del=/data/local/UnpackerSystem
@@ -5316,7 +5316,7 @@ case $REPLY in
  busybox rm -rf /data/local/AIK-mobile /data/adb/modules/aik-mobile 2> /dev/null
 if [ $(echo $?) -eq 0 ] ; then
 echo
-echo ".....AIK-Mobil wurde entfernt!"
+echo ".....AIK-mobil wurde entfernt!"
 echo
 fi
 fi
