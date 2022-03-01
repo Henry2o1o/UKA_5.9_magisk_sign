@@ -1,0 +1,38 @@
+#!/system/bin/sh
+
+ #br_name=$(echo $file | busybox sed 's!.*\/!!' | busybox awk -F"-|[+]|[.]|[{]|[(]" '{ print $1 }')
+ 
+  br_name=$(echo $file | busybox sed 's!.*\/!!' | busybox awk -F".new.dat.br" '{ print $1 }')
+
+
+ if [ -f ./"$br_name".transfer.list ]; then
+ echo
+ echo "....."$br_name".new.dat.br konvertieren..."
+ brotli -df "$br_name".new.dat.br -o "$br_name".new.dat 2> /dev/null
+ 
+ if [ $(echo $?) -eq 0 ]; then
+ echo
+ echo "....."$br_name".new.dat konvertieren..."
+ echo
+ sdat2img "$br_name".transfer.list "$br_name".new.dat "$br_name".img
+ if [ $(echo $?) -eq 0 ]; then
+ echo
+ echo "....."$br_name".new.dat entfernen..."
+ rm -f $PWD/"$br_name".new.dat
+ file=/"$nb"/"$br_name".img
+ nd="$nb"
+ . /data/local/binary/unpack_img
+ else
+ echo
+ echo ".....Fehler beim "$br_name".new.dat konvertieren"
+ echo
+ fi
+ else
+ echo
+ echo ".....Fehler beim "$br_name".new.dat.br konvertieren"
+ echo
+ fi
+ else
+ echo
+ echo ".....Keine "$br_name".transfer.list Datei im Ordner vorhnden."
+ fi

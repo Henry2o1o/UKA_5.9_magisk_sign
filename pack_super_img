@@ -187,14 +187,14 @@ END {print a*b}')"
  busybox cat config/pack_super.tmp | busybox tr -d '\n' > config/pack_super.sh
  else
  echo
- echo "....Нет значения переменной \"spars\"!"
+ echo "....Kein variabler Wert \"spars\"!"
  echo
  fi
 
  rm -f config/pack_super.tmp
  if [ -f config/pack_super.sh -a ! -z "$spars" ]; then
  echo
- echo "....Собираем $out..."
+ echo "....$out sammeln..."
  echo
  
  mkdir ./output 2> /dev/null
@@ -203,11 +203,11 @@ END {print a*b}')"
 {
 rr="$(busybox expr "$max_size_super2" - "$F")"
  ss=$(busybox expr "$rr" / 1024 / 1024)
- echo "....Сумма размеров собираемых образов, меньше максимального на $rr байт(~$ss mb)"
- echo " real = $F байт  <  max = $max_size_super2 байт"
+ echo "....Summe der Größen der zu sammelnden Images, die um $rr Byte kleiner sind als das Maximum(~$ss MB)"
+ echo " real = $F Byte  <  max = $max_size_super2 Byte"
  echo
- #echo "....Успешно создан $out!"
- #echo "....Образ сохранён в папку: /data/local/UnpackerSuper/output"
+ #echo "....$out erfolgreich erstellt!"
+ #echo "....Build im Ordner gespeichert: /data/local/UnpackerSuper/output"
  #echo
 return
 }
@@ -216,7 +216,7 @@ size_plus()
 {
 rr="$(busybox expr "$F" - "$max_size_super2")"
  ss=$(busybox expr "$rr" / 1024 / 1024)
- echo "....Сумма размеров собираемых образов, больше допустимого на $rr байт(~$ss mb)!"
+ echo "....Summe der Größe der zusammenzusetzenden Images, die größer ist als die zulässiges $rr Bytes (~$ss mb)!"
  echo " real = $F байт  >  max = $max_size_super2 байт"
  echo
 return
@@ -235,11 +235,11 @@ return
 
  chmod 755 ./config/pack_super.sh && ./config/pack_super.sh
  if [ $(echo $?) -eq 0 ]; then
- echo "....Успешно создан $out!"
- echo "....Образ сохранён в папку: /data/local/UnpackerSuper/output"
+ echo "....$out erfolgreich erstellt!"
+ echo "....Build im Ordner gespeichert: /data/local/UnpackerSuper/output"
  echo
  else
- echo "....Ошибка при создании $out!"
+ echo "....Fehler beim $out erstellen!"
  echo
 fi
 
@@ -252,12 +252,12 @@ fi
 
  else
  echo
- echo "....Ошибка при создании файла конфигурации!"
+ echo "....Fehler bei der Konfigurationsdatei erstellen!"
  echo
  fi
  else
  echo
- echo "....Ошибка, нет файла конфигурации!"
+ echo "....Fehler, keine Konfigurationsdatei!"
  echo
  fi
 

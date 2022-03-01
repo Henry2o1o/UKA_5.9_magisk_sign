@@ -1,0 +1,34 @@
+#!/system/bin/sh
+
+#r_name=$(echo $file | busybox sed 's!.*\/!!' | busybox awk -F"-|_|[+]|[.]|[{]|[(]" '{ print $1 }')
+
+ r="$(busybox basename $file)"
+ r_name=${r%.*}
+
+
+ if [ -f ./"$file" ]; then
+if [ ! -z "$(busybox hexdump -C -n 4 ./"$file" | grep '3a ff 26 ed')" ]; then
+echo
+echo ".....Konvertieren..."
+echo
+ simg2img ./"$file" ./"$r_name".raw.img
+ if [ $(echo $?) -eq 0 ]; then
+echo ".....raw-Image erstellt: \""$r_name".raw.img\"!"
+echo
+ else
+ echo
+ echo ".....Konvertierungsfehler!"
+ echo
+ fi
+ else
+ echo
+ echo ".....Image ist kein sparse."
+ echo
+ fi
+ else
+ echo
+ echo ".....Kein "$file" Image im Ordner vorhanden."
+ echo
+ fi
+
+
