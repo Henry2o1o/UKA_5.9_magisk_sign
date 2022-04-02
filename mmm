@@ -9,11 +9,11 @@
 {
  #clear
  echo
- echo "     Ввод папки сохранения образа    "
+ echo "     Image-Speicherordner aufrufen    "
  echo "     -----------------------------    "
  echo
- echo ".....При вводе 0, папка сохранения: /data/local/UnpackerSystem/uka_backup"
- echo ".....Введите 0, или путь к папке сохранения образа..."
+ echo ".....Wenn Sie 0 eingeben, speichern in Ordner: /data/local/UnpackerSystem/uka_backup"
+ echo ".....Geben Sie 0 oder den Pfad zum Bildspeicherordner ein..."
  echo
  read h && if [ "$h" = "0" ]; then
  dir_b=/data/local/UnpackerSystem/uka_backup
@@ -23,7 +23,7 @@
  
             clear
             echo
- echo "     Установлена папка сохранения образа:"
+ echo "     Ordner zum Speichern von Images festlegen:"
  echo "     $dir_b"
  elif [ -d "$h" ]; then
  dir_b="$(echo "$h" | busybox sed 's!/!!; s!^!/!')"
@@ -31,12 +31,12 @@
  
  clear
             echo
- echo "     Установлена папка сохранения образа:"
+ echo "     Ordner zum Speichern von Images festlegen:"
  echo "     $dir_b"
  else
  clear
  echo
- echo ".....Папки сохранения не существует!"
+ echo ".....Ordner zum Speichern existiert nicht!"
  n
  return
  fi
@@ -46,7 +46,7 @@
 inf_space_mmm()
 {
 free_space="$(busybox df -h "$dir_b" | busybox tail -1 |  busybox awk '{ print $(NF-2) }')"
-echo "    В папке свободно: "$free_space""
+echo "    Freier Speicherplatz im Ordner: "$free_space""
 return
 }
 
@@ -54,11 +54,11 @@ nnn()
 {
 
  echo
- echo "     Выбор папки сохранения образа    "
+ echo "     Ordner zum Speichern von Imges auswählen   "
  echo "     -----------------------------    "
  echo
- echo ".....При вводе 0, папка сохранения: /data/local/UnpackerSystem/uka_backup"
- echo ".....Введите 0, или свой путь к папке сохранения образа..."
+ echo ".....Wenn Sie 0 eingeben, in Ordner speichern: /data/local/UnpackerSystem/uka_backup"
+ echo ".....Geben Sie 0 oder Ihren Pfad zum Image-Speicherordner ein..."
  echo
  read h && if [ "$h" = "0" ]; then
  dir_b=/data/local/UnpackerSystem/uka_backup
@@ -67,7 +67,7 @@ nnn()
  
             clear
             echo
- echo "    Установлена папка сохранения выходного образа:"
+ echo "    Ausgabeordner für Image speichern auswählen"
  echo "    $dir_b"
     inf_space_mmm
  elif [ -d "$h" -o -d /"$h" -a ! -z "$h" ]; then
@@ -78,7 +78,7 @@ nnn()
  
  clear
             echo
- echo "    Установлена папка сохранения выходного образа:"
+ echo "    Ordner zum Speichern von Images festlegen"
  set -- $dir_b
  echo "    $dir_b"
   inf_space_mmm
@@ -86,9 +86,9 @@ nnn()
  else
  clear
  echo
- echo "    \"$dir_b\" недоступен для сохранения образа!"
+ echo "    \"$dir_b\" nicht verfügbar, um das Image zu speichern!"
  echo
- echo "    Установлена папка сохранения выходного образа:"
+ echo "    Ordner zum Speichern von Images festlegen:"
  dir_b=/data/local/UnpackerSystem/uka_backup
  set -- $dir_b
  mkdir "$dir_b" 2> /dev/null
@@ -100,7 +100,7 @@ nnn()
 
  clear
  echo
- echo "....Внимание! Папки сохранения не существует!"
+ echo "....Achtung! Speicherordner existiert nicht!"
  echo
  echo "    Установлена папка сохранения выходного образа:"
  dir_b=/data/local/UnpackerSystem/uka_backup
@@ -126,9 +126,9 @@ nnn()
 if [ ! -z "$name" ]; then
  clear
  echo
- echo ".....Выберите раздел:"
+ echo ".....Abschnitt auswählen"
  echo
- select menu in $name "Выход в главное меню"; do
+ select menu in $name "Zurück zum Hauptmenü"; do
 case $REPLY in
                  [0-9]*) i="$#"
                       let i=i+1
@@ -151,7 +151,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Вводите цифры, соответствующие меню."
+            echo "      Menünummer eingeben."
          inf
          return
          break
@@ -159,7 +159,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Вводите цифры, соответствующие меню."
+            echo "      Menünummer eingeben."
          inf
          return
          break;;
@@ -167,7 +167,7 @@ case $REPLY in
  done
  else
  echo
- echo ....."В папке нет подходящих файлов"
+ echo ....."Es gibt keine übereinstimmenden Dateien im Ordner"
  echo
  main_menu
  return
@@ -201,13 +201,13 @@ echo ".....Сохранено в /data/local/UnpackerPreloader/output"
 echo
 else
 echo
-echo ".....Ошибка извлечения preloder'а!"
+echo ".....Preloder-Extraktionsfehler!"
 echo
 fi
 fi
 else
 echo
-echo ".....Ошибка, не найден header MTK!"
+echo ".....Fehler, MTK-Header nicht gefunden!"
 echo
 fi
  cd - &> /dev/null
@@ -218,9 +218,9 @@ fi
  pre_extract_file()
 {
              echo
-             echo "   Положите файл в папку: /data/local/UnpackerPreloader"
+             echo "   Datei in Ordner ablegen: /data/local/UnpackerPreloader"
 echo
-select img in  "Вырезать preloader из файла" "Выход в главное меню" "Завершение работы"; do
+select img in  "Preloader aus Datei ausschneiden" "Zurück zum Hauptmenü" "Beenden"; do
 case $REPLY in 
          1 ) clear
  cd /data/local/UnpackerPreloader
@@ -236,9 +236,9 @@ case $REPLY in
 
 if [ ! -z "$b" ]; then
 echo
-echo ".....Выберите файл:"
+echo ".....Datei auswählen:"
 echo
-select menu in $b "Выход в главное меню"; do
+select menu in $b "Zurück zum Hauptmenü"; do
 case $REPLY in
                 [0-9]*) i="$#"
                       let i=i+1
@@ -257,7 +257,7 @@ case $REPLY in
         else
         clear
         echo
-            echo "      Вводите цифры, соответствующие меню."
+            echo "      Menünummer eingeben."
          pre_extract_file
          return
          break
@@ -265,7 +265,7 @@ case $REPLY in
          break;;
       *) clear
          echo
-            echo "      Вводите цифры, соответствующие меню."
+            echo "      Menünummer eingeben."
          pre_extract_file
          return
          break;;
@@ -273,7 +273,7 @@ case $REPLY in
  done
  else
  echo
- echo ....."В папке нет файлов для извлечения."
+ echo ....."Ordner enthält keine Dateien zum Extrahieren."
  echo
  main_menu
  return
@@ -286,7 +286,7 @@ break ;;
                break ;;
          *) clear
             echo
-            echo "      Вводите цифры, соответствующие этому меню."
+            echo "      Menünummer eingeben."
               pre_extract_file
               break ;;
     esac
@@ -326,13 +326,13 @@ return
  busybox mv preloader.img "${name_pre}"
  cd - &> /dev/null
  echo
- echo ".....Успешно извлечён $name_pre!"
- echo ".....Сохранено в папку: $dir_pre"
+ echo ".....Erfolgreich erhalten $name_pre!"
+ echo ".....Gespeichert im Ordner: $dir_pre"
  echo
  return
  else
  echo
- echo ".....Ошибка извлечения preloder'а!"
+ echo ".....Preloder-Extraktionsfehler!"
  echo
  return
  fi
@@ -340,13 +340,13 @@ return
  fi
  else
  echo
- echo ".....Ошибка, не найден header MTK!"
+ echo ".....Fehler, MTK-Header nicht gefunden!"
  echo
  return
  fi
  else
  echo
- echo ".....Ошибка, не найден /dev/block/mmcblk0boot0!"
+ echo ".....Fehler, nicht gefunden /dev/block/mmcblk0boot0!"
  echo
  return
  fi
@@ -358,7 +358,7 @@ return
   selekt()
 {
   echo
-  select img in "Выбор раздела для сохранения" "Инфо о размере и номер блока раздела" "Поиск разделов" "Извлечение образов из раздела \"super\" текущей прошивки" "Извлечение preloader из текущей прошивки(только MTK)" "Извлечение preloader из файла(только MTK)" "Выход в главное меню" "Завершение работы"; do
+  select img in "Partition zum Speichern auswählen" "Größeninfo und Partitionsblocknummer" "Partition suchen" "Images von einer Partition extrahieren \"super\" aktuelle Firmware" "Preloader aus aktueller Firmware extrahieren (nur MTK)" "Preloader aus Datei extrahieren (nur MTK)" "Zurück zum Hauptmenü" "Beenden"; do
 case $REPLY in 
           1 ) clear
               bek
@@ -380,7 +380,7 @@ case $REPLY in
  . /data/local/binary/unpack_img
  else
  echo
- echo ".....В текущей прошивке не найден раздел super!"
+ echo ".....Superpartition in aktueller Firmware nicht zu finden!"
  echo
  fi
                selekt
@@ -405,7 +405,7 @@ case $REPLY in
                break ;;
           * ) clear
              echo
-             echo "      Вводите цифры, соответствующие этому меню."
+             echo "      Menünummer eingeben."
               selekt
                return
               break ;;
@@ -420,7 +420,7 @@ case $REPLY in
 {
   #clear
   echo
-  echo ".....Поиск разделов..."
+  echo ".....Partitionssuche..."
 
  busybox find /dev/block ! -iname 'userdata' -type l | busybox grep 'by-name' | while read p
 do
@@ -445,9 +445,9 @@ done | busybox sort -u >> "$dir"/ddd.txt
  set -- $name
  if [ ! -z "$name" ]; then
  echo
- echo ".....Выберите раздел для сохранения:"
+ echo ".....Partition zum Speichern auswählen:"
  echo
- select menu in $name "Выход в главное меню"; do
+ select menu in $name "Zurück zum Hauptmenü"; do
  case $REPLY in
                  [1-9]*) i="$#"
                       let i=i+1
@@ -464,7 +464,7 @@ done | busybox sort -u >> "$dir"/ddd.txt
       
      if [ "$fs" == "false" ]; then
          echo
-         echo ".....Создание бекапа $file.img..."
+         echo ".....Sicherung erstellen $file.img..."
          echo
         busybox cat "$dir"/ddd.txt | grep "^$file "
          echo
