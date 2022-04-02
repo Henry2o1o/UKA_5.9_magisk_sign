@@ -5,7 +5,7 @@
 loop=$(busybox mount | cut -d" " -f1,3 | grep "$file$" | cut -d" " -f1)
 loop_d=$(busybox mount | cut -d" " -f3 | grep "$file$")
 echo
-echo ".....$file aushängen..."
+echo ".....$file aushängen…"
 echo
 if [ ! -z "$loop_d" ]; then
 

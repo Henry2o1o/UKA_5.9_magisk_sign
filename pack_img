@@ -90,7 +90,7 @@ if [ "$size" = "111" ]; then
  chmod 755 ./"$config"/"$pack_d"_pack_avb_sparse.sh && . ./"$config"/"$pack_d"_pack_avb_sparse.sh
  if [ $(echo $?) -eq 0 ]; then
  echo
- echo ".....AVB-Struktur erstellen..."
+ echo ".....AVB-Struktur erstellen…"
  
  avbtool add_hashtree_footer --image "$outdir"/"$pack_d".new.img --partition_size "$r_size" --partition_name "$part_name" --do_not_generate_fec
 

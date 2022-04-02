@@ -7,17 +7,17 @@
 
  if [ -f ./"$br_name".transfer.list ]; then
  echo
- echo "....."$br_name".new.dat.br konvertieren..."
+ echo "....."$br_name".new.dat.br konvertieren…"
  brotli -df "$br_name".new.dat.br -o "$br_name".new.dat 2> /dev/null
  
  if [ $(echo $?) -eq 0 ]; then
  echo
- echo "....."$br_name".new.dat konvertieren..."
+ echo "....."$br_name".new.dat konvertieren…"
  echo
  sdat2img "$br_name".transfer.list "$br_name".new.dat "$br_name".img
  if [ $(echo $?) -eq 0 ]; then
  echo
- echo "....."$br_name".new.dat entfernen..."
+ echo "....."$br_name".new.dat entfernen…"
  rm -f $PWD/"$br_name".new.dat
  file=/"$nb"/"$br_name".img
  nd="$nb"

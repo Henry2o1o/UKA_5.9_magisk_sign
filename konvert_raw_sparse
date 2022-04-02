@@ -8,7 +8,7 @@
  if [ -f ./"$file" ]; then
 if [ -z "$(busybox hexdump -C -n 4 ./"$file" | grep '3a ff 26 ed')" ]; then
 echo
-echo ".....Konvertieren..."
+echo ".....Konvertieren…"
 echo
 img2simg ./"$file" ./"$r_name".sparse.img 2> /dev/nul
  if [ $(echo $?) -eq 0 ]; then

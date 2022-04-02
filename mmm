@@ -13,7 +13,7 @@
  echo "     -----------------------------    "
  echo
  echo ".....Wenn Sie 0 eingeben, speichern in Ordner: /data/local/UnpackerSystem/uka_backup"
- echo ".....Geben Sie 0 oder den Pfad zum Bildspeicherordner ein..."
+ echo ".....Geben Sie 0 oder den Pfad zum Bildspeicherordner ein…"
  echo
  read h && if [ "$h" = "0" ]; then
  dir_b=/data/local/UnpackerSystem/uka_backup
@@ -58,7 +58,7 @@ nnn()
  echo "     -----------------------------    "
  echo
  echo ".....Wenn Sie 0 eingeben, in Ordner speichern: /data/local/UnpackerSystem/uka_backup"
- echo ".....Geben Sie 0 oder Ihren Pfad zum Image-Speicherordner ein..."
+ echo ".....Geben Sie 0 oder Ihren Pfad zum Image-Speicherordner ein…"
  echo
  read h && if [ "$h" = "0" ]; then
  dir_b=/data/local/UnpackerSystem/uka_backup
@@ -489,7 +489,7 @@ done | busybox sort -u >> "$dir"/ddd.txt
 case $REPLY in 
                 1 ) clear
                     echo
-         echo ".....$file.img sichern..."
+         echo ".....$file.img sichern…"
          echo
         busybox cat "$dir"/ddd.txt | grep "^$file "
          echo
@@ -510,7 +510,7 @@ case $REPLY in
                       break ;;
                 2 ) clear
                      echo
-         echo ".....$file.sparse.img sichern..."
+         echo ".....$file.sparse.img sichern…"
          echo
         busybox cat "$dir"/ddd.txt | grep "^$file "
          echo

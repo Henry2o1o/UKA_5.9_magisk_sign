@@ -17,7 +17,7 @@ config="config/$pack_d"
  echo
  echo ".....0 eingeben, Ordner speichern: /data/local/UnpackerSuper/output"
  echo ".....1 eingeben, Ordner speichern: /data/local/UnpackerSuper"
- echo ".....0, 1 oder Ihren Pfad zum Bildspeicherordner eingeben..."
+ echo ".....0, 1 oder Ihren Pfad zum Bildspeicherordner eingeben…"
  #echo "  Zum Beispiel: 0" 
  #echo "  Zum Beispiel: /sdcard/test"
  #echo "  Eingabebeispiel: /storage/F960-18E7"
@@ -71,7 +71,7 @@ nn()
  echo "     -----------------------------    "
  echo
  echo ".....0 eingeben, Ordner speichern: /data/local/UnpackerSystem"
- echo ".....0 oder Ihren Pfad zum Image-Speicherordner eingeben..."
+ echo ".....0 oder Ihren Pfad zum Image-Speicherordner eingeben…"
  echo
  read h && if [ "$h" = "0" ]; then
  outdir=/data/local/UnpackerSystem
@@ -133,7 +133,7 @@ nn()
  echo "     -----------------------------    "
  echo
  echo ".....0 eingeben, Ordner speichern: /data/local/UnpackerSystem"
- echo ".....0 oder Ihren Pfad zum Image-Speicherordner eingeben..."
+ echo ".....0 oder Ihren Pfad zum Image-Speicherordner eingeben…"
  echo
  read h && if [ "$h" = "0" ]; then
  outdir=/data/local/UnpackerSystem
@@ -198,7 +198,7 @@ check_size_img()
 {
 cd /data/local/UnpackerSystem
 echo
-echo ".....Größe zum Erstellen..."
+echo ".....Größe zum Erstellen…"
 echo
 
 #i="$(busybox expr $(busybox du -s "$pack_d" | busybox awk '{ print $1 }') \* 1024)"
@@ -887,7 +887,7 @@ if [ "$?" -eq "0" ]; then
 echo >> ../path_dtb.txt
 
 #echo
-#echo "...Nach Patch-Werten suchen..."
+#echo "...Nach Patch-Werten suchen…"
 clear
 for file_path in $(busybox find -maxdepth 1 -name "*dtb"); do
 [ -f $file_path ] && echo
@@ -1342,7 +1342,7 @@ read b && $b
  if [ $(echo $?) -eq 0 ]; then
  clear
  echo
- echo ".....Image-Suche..."
+ echo ".....Image suchen…"
  
  dir_dat=/data/local/binary
  nd=$(echo $b | busybox awk '{ print $2 }' | busybox sed 's!^/!!') && echo "$nd" > /data/local/binary/last.txt
@@ -1525,7 +1525,7 @@ return
  > $my_dir/spars
  #> $my_dir/fs_ext
  echo
- echo ".....Image-Suche..."
+ echo ".....Image suchen…"
 
  obraz=$(a=$(busybox find "$home_dir" -maxdepth 1 -name '*.img' -type f | busybox sed "s!$home_dir!!")
  set -- $a
@@ -2759,7 +2759,7 @@ done
 break ;;
          4) clear
              echo
-             echo ".....Dem entpackten Image, Ordner oder Dateien hinzufügen..."
+             echo ".....Dem entpackten Image, Ordner oder Dateien hinzufügen…"
              echo
 select img in "Запись" "Zurück zum Hauptmenü "; do
 case $REPLY in
@@ -3506,7 +3506,7 @@ case $REPLY in
          if [ ! -z "$file" -a "$REPLY" -lt "$i" ]; then
  clear
  echo
- echo ".....Nach Patch-Werten suchen..."
+ echo ".....Nach Patch-Werten suchen…"
  
  true_vb()
 {
@@ -3731,7 +3731,7 @@ v=$(busybox find . -maxdepth 1 -name '*.sin' 2> /dev/null | busybox sed 's!./!!'
 konv()
 {
          echo
-         echo ".....Konvertieren..."
+         echo ".....Konvertieren…"
          echo
          if [ ! -z "$(echo "$file" | busybox grep ".sin$")" ]; then
         
@@ -3837,7 +3837,7 @@ v=$(busybox find . -maxdepth 1 -name '*.lz4' 2> /dev/null | busybox sed 's!./!!'
 konv()
 {
 echo
-         echo ".....Konvertieren..."
+         echo ".....Konvertieren…"
          echo
          lz4 -df --no-sparse "$file"
          if [ "$?" -eq "0" ]; then
@@ -3929,7 +3929,7 @@ v=$(busybox find . -maxdepth 1 -name '*.img' 2> /dev/null | busybox sed 's!./!!'
 konv()
 {
 echo
-         echo ".....Konvertieren..."
+         echo ".....Konvertieren…"
          echo
          lz4 -3 -f "$file"
          if [ "$?" -eq "0" ]; then
@@ -3952,7 +3952,7 @@ mc(){
 read b
 if [ "$b" -le "9" ]; then
 echo
-echo ".....In "$file".lz4 konvertieren,...Warten..."
+echo ".....In "$file".lz4 konvertieren,...Warten…"
 echo
 lz4 -"$b" -f $file
 if [ $(echo $?) -eq 0 ] ; then
@@ -4098,7 +4098,7 @@ case $REPLY in
  mkdir ./output 2> /dev/null
  name_out=$(echo $name1 | busybox sed 's!./!!' | busybox awk -F"img" '{ print $1 }')
  #echo
- echo ".....${name_out}sparsechunk.raw.img zusammenführen..."
+ echo ".....${name_out}sparsechunk.raw.img zusammenführen…"
  simg2img ${name1} ${name2} ./output/${name_out}sparsechunk.raw.img
  if [ "$?" -eq "0" ]; then
  #echo
@@ -4139,7 +4139,7 @@ case $REPLY in
  if [ -f ./$check_name ]; then
  echo
  echo ".....${rab_file} Datei gefunden"
- echo ".....$obraz mit $rab_file zusammenführen..."
+ echo ".....$obraz mit $rab_file zusammenführen…"
  python39 /data/local/binary/bin_system/qfil1.py /data/local/UnpackerQfil/"$rab_file" "$name"
   if [ "$?" -eq "0" ]; then
  resize_img
@@ -4212,7 +4212,7 @@ case $REPLY in
          if [ ! -z "$file" -a "$REPLY" -lt "$i" ]; then
  clear
               echo
-              echo "...../$nd/$file extrahieren..."
+              echo "...../$nd/$file extrahieren…"
               echo
  #python39 /data/local/binary/bin_payload/extract_payload-master/extract_payload.py ./payload.bin /data/local/UnpackerPayload
 
@@ -4309,7 +4309,7 @@ case $REPLY in
          if [ ! -z "$file" -a "$REPLY" -lt "$i" ]; then
  clear
               echo
-              echo ".....Извлечение из /$nd/$file..."
+              echo ".....Extrahieren von /$nd/$file…"
               echo
  python39 /data/local/binary/bin_system/splitapp_v2.py -f "$file" -o /data/local/UnpackerUpdateApp
 
@@ -4318,7 +4318,7 @@ case $REPLY in
  napp=$(busybox find -name "super_[0-9].img" -type f | sort -n)
  if [ ! -z "$napp" ]; then
  echo
- echo ".....Defekte super.img reparieren..."
+ echo ".....Defekte super.img reparieren…"
  simg2img ${napp} super.raw.img
  if [ $(echo $?) -eq 0 ]; then
 echo
@@ -4620,9 +4620,9 @@ case $REPLY in
  if [ "$(busybox hexdump -C -n 20 /"$nd"/"$file" | busybox grep -Eo "52 4b 46 57 66|52 4b 41 46")" ]; then
 
               echo
-              echo ".....Magic Rockchip erkannt..."
+              echo ".....Magic Rockchip erkannt…"
               echo
-              echo "...../$nd/$file extrahieren..."
+              echo "...../$nd/$file extrahieren…"
               echo
     if [ ! -z "$(busybox hexdump -C -n 20 /"$nd"/"$file" | busybox grep -o "52 4b 46 57 66")" ]; then
  busybox mkdir "$rok_dir"/"$name_rok" 2> /dev/null
@@ -4679,9 +4679,9 @@ echo "rkaf" > "$rok_dir"/"$name_rok"/conf
    elif [ "$(busybox hexdump -C -n 3000 /"$nd"/"$file" | busybox grep -o "49 4d 41 47 45 57 54 59")" ]; then
               clear
               echo
-              echo ".....Magic Alwinner entdeckt..."
+              echo ".....Magic Alwinner entdeckt…"
               echo
-              echo "...../$nd/$file extrahieren..."
+              echo "...../$nd/$file extrahieren…"
               echo
  busybox cp -f /"$nd"/"$file" "$rok_dir"/"$file"
  cd "$rok_dir"
@@ -4702,9 +4702,9 @@ echo "rkaf" > "$rok_dir"/"$name_rok"/conf
  elif [ "$(busybox hexdump -C -n 3000 /"$nd"/"$file" | busybox grep -o "56 19 b5 27")" ]; then
               clear
               echo
-              echo ".....Magic Amlogic entdeckt..."
+              echo ".....Magic Amlogic entdeckt…"
               echo
-              echo ".....Unter /$nd/$file gespeichert..."
+              echo ".....Unter /$nd/$file gespeichert…"
               echo
  busybox mkdir "$rok_dir"/"$name_rok" 2> /dev/null
  aml_image_v2_packer -d /"$nd"/"$file" "$rok_dir"/"$name_rok"
@@ -4807,7 +4807,7 @@ done
  if [ ! -z "$load" ]; then
  clear
  echo
- echo "......img Firmware erstellen..."
+ echo "......img Firmware erstellen…"
  echo
  busybox sleep 2
 
@@ -4836,7 +4836,7 @@ afptool -pack "$name_rok" update.new.img
       
       elif [ -s "$name_rok"/image.cfg ]; then
       echo
-      echo "...... .img Firmware erstellen..."
+      echo "...... .img Firmware erstellen…"
       echo
       busybox sleep 2
       aml_image_v2_packer -r "$name_rok"/image.cfg "$rok_dir"/"$name_rok" "$outdir"/"$name_rok".new.img
@@ -4960,7 +4960,7 @@ case $REPLY in
 
  clear
  echo
- echo ".....$f_out zusammenführen, etwas warten..."
+ echo ".....$f_out zusammenführen, etwas warten…"
  chmod 755 ./pack.sh && ./pack.sh
  if [ $(echo $?) -eq 0 ]; then
    echo
@@ -5009,7 +5009,7 @@ return
  >super_simg
  echo 
  echo ".....Images aus "$file" extrahieren"
- echo ".....Warten..."
+ echo ".....Warten…"
  echo
  python39 /data/local/binary/bin_oppo_decrypt/ofp_mtk_decrypt.py "$file" "$m_name" 1> log.txt
  python39 /data/local/binary/bin_oppo_decrypt/ofp_qc_decrypt.py "$file" /"$ofp_dir"/"$m_name" 1>> log.txt
@@ -5047,7 +5047,7 @@ return
  done
 
  echo 
- echo ".....super.raw.img zusammenführen! Warten..."
+ echo ".....super.raw.img zusammenführen! Warten…"
  
  echo "simg2img "$(busybox cat super_simg)"$m_name/super.raw.img" > super.sh
  if [ ! -z "$(busybox cat super.sh | busybox awk '/super/ { print $2 }')" ]; then
@@ -5308,7 +5308,7 @@ case $REPLY in
                /data/local/AIK-mobile/cleanup.sh
   
      echo
-     echo ".....AIK-Mobil entfernen..."
+     echo ".....AIK-Mobil entfernen…"
  /data/local/AIK-mobile/bin/aik --uninstall
  busybox mount -o rw,remount / 2> /dev/null
  busybox mount -o rw,remount /system 2> /dev/null
