@@ -252,7 +252,7 @@ fi
 
  else
  echo
- echo "....Fehler bei der Konfigurationsdatei erstellen!"
+ echo "....Fehler beim Konfigurationsdatei erstellen!"
  echo
  fi
  else

@@ -5,13 +5,13 @@
 {
  if [ -s "$outdir"/"$pack_d".new.img ]; then
  echo
- echo ".....Успешно создан "$pack_d".new.img!"
+ echo ".....Erfolgreich erstellt "$pack_d".new.img!"
  echo
  size_out="$(busybox stat -c %s "$outdir"/"$pack_d".new.img)"
  size_free="$(busybox expr "$(tune2fs -l "$outdir"/"$pack_d".new.img | busybox awk '/Free blocks:/ { print $3 }')" \* 4096 / 1024 / 1024)"
  echo "$size_out" > "$config"/"$pack_d"_size_out.txt
- echo ".....Размер raw == $size_out байт"
- echo ".....Свободное место: $size_free мб"
+ echo ".....Размер raw == $size_out Byte"
+ echo ".....Freier Platz: $size_free MB"
  echo
 fi
  return
@@ -47,11 +47,11 @@ sed -i '/^$/d' "$config"/"$pack_d"_fs_config 2> /dev/null
 
 my_pack(){
 echo
-echo ".....Собираем со сторонним file_contexts..."
+echo ".....Erstellen mit file_contexts von Drittanbietern…"
 cp ./"$config"/"$pack_d"*_fs_config ./fs_config
 if [ -f ./file_contexts -a -f ./fs_config ]; then
 echo
-echo ".....Создание образа "$pack_d".new.img..."
+echo ".....Image erstellen "$pack_d".new.img…"
 echo
 if [ "$size" = "111" ]; then
  
@@ -62,23 +62,23 @@ if [ "$size" = "111" ]; then
  chmod 755 ./"$config"/"$pack_d"_pack_avb.sh && . ./"$config"/"$pack_d"*_pack_avb.sh
  if [ $(echo $?) -eq 0 ]; then
  echo
- echo ".....Создание структуры AVB..."
+ echo ".....AVB-Struktur erstellen…"
  
  avbtool add_hashtree_footer --image "$outdir"/"$pack_d".new.img --partition_size "$r_size" --partition_name "$part_name" --do_not_generate_fec
 
  if [ $(echo $?) -eq 0 ]; then
  #echo
- #echo ".....Успешно создан "$pack_d".new.img!"
+ #echo ".....Erfolgreich erstellt "$pack_d".new.img!"
  size_output_raw
  #echo
  else
  echo
- echo ".....error: Ошибка при создании структуры AVB!"
+ echo ".....Fehler: Fehler beim Erstellen der AVB-Struktur!"
  echo
  fi
  else
  echo
- echo ".....error: Ошибка при сборке!"
+ echo ".....Fehler: Fehler beim Erstellen"
  echo
  fi
 
@@ -86,12 +86,12 @@ if [ "$size" = "111" ]; then
  chmod 755 ./"$config"/"$pack_d"_gsize.sh && . ./"$config"/"$pack_d"_gsize.sh
  if [ $(echo $?) -eq 0 ]; then
  #echo
- #echo ".....Успешно создан "$pack_d".new.img!"
+ #echo ".....Erfolgreich erstellt "$pack_d".new.img!"
  size_output_raw
  #echo
  else
  echo
- echo ".....error: Ошибка при сборке!"
+ echo ".....Fehler: Fehler beim Erstellen!"
  echo
  fi
  fi
@@ -104,28 +104,28 @@ if [ "$size" = "111" ]; then
  chmod 755 ./"$config"/"$pack_d"*_pack_avb.sh && . ./"$config"/"$pack_d"*_pack_avb.sh
  if [ $(echo $?) -eq 0 ]; then
   echo
- echo ".....Создание структуры AVB..."
+ echo ".....AVB-Struktur erstellen…"
  
   avbtool add_hashtree_footer --image "$outdir"/"$pack_d".new.img --partition_size "$size_obraz" --partition_name "$part_name" --do_not_generate_fec
  if [ $(echo $?) -eq 0 ]; then
  #echo
- #echo ".....Успешно создан "$pack_d".new.img!"
+ #echo ".....Erfolgreich erstellt "$pack_d".new.img!"
  size_output_raw
  #echo
  else
  echo
- echo ".....error: Ошибка при создании структуры AVB!"
+ echo ".....Fehler: Fehler beim Erstellen der AVB-Struktur!"
  echo
  fi
  else
  if [ $(echo $?) -eq 0 ]; then
  #echo
- #echo ".....Успешно создан "$pack_d".new.img!"
+ #echo ".....Erfolgreich erstellt "$pack_d".new.img!"
  size_output_raw
  #echo
  else
  echo
- echo ".....error: Ошибка при сборке!"
+ echo ".....Fehler: Fehler beim Erstellen!"
  echo
  fi
  fi
@@ -133,19 +133,19 @@ if [ "$size" = "111" ]; then
  chmod 755 ./"$config"/"$pack_d"*_pack.sh && . ./"$config"/"$pack_d"*_pack.sh
  if [ $(echo $?) -eq 0 ]; then
  #echo
- #echo ".....Успешно создан "$pack_d".new.img!"
+ #echo ".....Erfolgreich erstellt "$pack_d".new.img!"
  size_output_raw
  #echo
  else
  echo
- echo ".....error: Ошибка при сборке!"
+ echo ".....Fehler: Fehler beim Erstellen!"
  echo
  fi
  fi
  fi
 else
 echo
-echo ".....Не хватает файлов конфигурации в папке: /data/local/UnpackerSystem/config."
+echo ".....Fehlende Konfigurationsdateien im Ordner: /data/local/UnpackerSystem/config."
 echo
 fi
 }
@@ -154,12 +154,12 @@ fi
 
  if [ ! -f ./file_contexts ]; then
 echo
-echo ".....Не найден сторонний file_contexts,собираем с полученным при распаковке образа..."
+echo ".....Dateikontexte von Drittanbietern nicht gefunden, zusammenfügen mit erhalten beim Entpacken des Images..."
 cp ./"$config"/"$pack_d"*_fs_config ./fs_config
 cp ./"$config"/"$pack_d"*_file_contexts ./file_contexts
 if [ -f ./file_contexts -a -f ./fs_config ]; then
 echo
-echo ".....Создание образа "$pack_d".new.img..."
+echo ".....Image erstellen "$pack_d".new.img…"
 echo
  if [ "$size" = "111" ]; then
  
@@ -171,23 +171,23 @@ echo
  chmod 755 ./"$config"/"$pack_d"_pack_avb.sh && . ./"$config"/"$pack_d"*_pack_avb.sh
  if [ $(echo $?) -eq 0 ]; then
  echo
- echo ".....Создание структуры AVB..."
+ echo ".....AVB-Struktur erstellen…"
  
  avbtool add_hashtree_footer --image "$outdir"/"$pack_d".new.img --partition_size "$r_size" --partition_name "$part_name" --do_not_generate_fec
 
  if [ $(echo $?) -eq 0 ]; then
  #echo
- #echo ".....Успешно создан "$pack_d".new.img!"
+ #echo ".....Erfolgreich erstellt "$pack_d".new.img!"
  size_output_raw
  #echo
  else
  echo
- echo ".....error: Ошибка при создании структуры AVB!"
+ echo ".....Fehler: Fehler beim Erstellen der AVB-Struktur!"
  echo
  fi
  else
  echo
- echo ".....error: Ошибка при сборке!"
+ echo ".....Fehler: Fehler beim Erstellen!"
  echo
  fi
 
@@ -195,12 +195,12 @@ echo
  chmod 755 ./"$config"/"$pack_d"_gsize.sh && . ./"$config"/"$pack_d"_gsize.sh
  if [ $(echo $?) -eq 0 ]; then
  #echo
- #echo ".....Успешно создан "$pack_d".new.img!"
+ #echo ".....Erfolgreich erstellt "$pack_d".new.img!"
  size_output_raw
  #echo
  else
  echo
- echo ".....error: Ошибка при сборке!"
+ echo ".....Fehler: Fehler beim Erstellen!"
  echo
  fi
  fi
@@ -213,28 +213,28 @@ echo
  chmod 755 ./"$config"/"$pack_d"*_pack_avb.sh && . ./"$config"/"$pack_d"*_pack_avb.sh
  if [ $(echo $?) -eq 0 ]; then
   echo
- echo ".....Создание структуры AVB..."
+ echo ".....AVB-Struktur erstellen…"
  
   avbtool add_hashtree_footer --image "$outdir"/"$pack_d".new.img --partition_size "$size_obraz" --partition_name "$part_name" --do_not_generate_fec
  if [ $(echo $?) -eq 0 ]; then
  #echo
- #echo ".....Успешно создан "$pack_d".new.img!"
+ #echo ".....Erfolgreich erstellt "$pack_d".new.img!"
  size_output_raw
  #echo
  else
  echo
- echo ".....error: Ошибка при создании структуры AVB!"
+ echo ".....Fehler: Fehler beim Erstellen der AVB-Struktur!"
  echo
  fi
  else
  if [ $(echo $?) -eq 0 ]; then
  #echo
- #echo ".....Успешно создан "$pack_d".new.img!"
+ #echo ".....Erfolgreich erstellt "$pack_d".new.img!"
  size_output_raw
  #echo
  else
  echo
- echo ".....error: Ошибка при сборке!"
+ echo ".....Fehler: Fehler beim Erstellen!"
  echo
  fi
  fi
@@ -242,19 +242,19 @@ echo
  chmod 755 ./"$config"/"$pack_d"*_pack.sh && . ./"$config"/"$pack_d"*_pack.sh
  if [ $(echo $?) -eq 0 ]; then
  #echo
- #echo ".....Успешно создан "$pack_d".new.img!"
+ #echo ".....Erfolgreich erstellt "$pack_d".new.img!"
  size_output_raw
  #echo
  else
  echo
- echo ".....error: Ошибка при сборке!"
+ echo ".....Fehler: Fehler beim Erstellen!"
  echo
  fi
  fi
  fi
 else
 echo
-echo ".....Не хватает файлов конфигурации в папке: /data/local/UnpackerSystem/config."
+echo ".....Fehlende Konfigurationsdateien im Ordner: /data/local/UnpackerSystem/config."
 echo
 fi
 else
@@ -262,7 +262,7 @@ my_pack
 fi
 else
 echo
-echo ".....Нет папки \""$pack_d"\" для сборки образа, или файла *_pack.sh."
+echo ".....Es gibt keinen Ordner \""$pack_d"\" zum Erstellen des Images oder einer Datei *_pack.sh."
 echo
 fi
 rm -f ./fs_config ./file_contexts

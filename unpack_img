@@ -56,17 +56,17 @@ echo "\033[33;1m.....Erfolgreich entpackt! \033[0m"
 echo
 else
 echo 
-echo ".....Entpackfehler (...tar nicht extrahiert)"
+echo ".....Entpackfehler (tar nicht extrahiert)"
 echo
 fi
 else
 echo 
-echo ".....Entpackfehler (...tar nicht erstellt)"
+echo ".....Entpackfehler (tar nicht erstellt)"
 echo
 fi
 else
 echo 
-echo ".....Ошибка распаковки(...not mount)"
+echo ".....Fehler beim Entpacken (not mount)"
 echo
 fi
 umount erofs/"$r_name" 2> /dev/null
@@ -133,14 +133,14 @@ END {print a*b}')"
    if [ "$sim" == 0 ]; then
  rr="$(busybox expr "$max_size_super2" - "$F")"
  ss=$(busybox expr "$rr" / 1024 / 1024)
- echo ".....Сумма размеров полученных образов, меньше максимального на $rr байт(~$ss mb)"
- echo " real = $F байт  <  max = $max_size_super2 байт"
+ echo ".....Die Summe der Größen der erhaltenen Images, kleiner als das Maximum um $rr Bytes (~$ss MB)"
+ echo " real = $F Byte  <  max = $max_size_super2 Byte"
  
   elif [ "$sim" == 1 ]; then
  rr="$(busybox expr "$F" - "$max_size_super2")"
  ss=$(busybox expr "$rr" / 1024 / 1024)
- echo ".....Сумма размеров полученных образов, больше допустимого на $rr байт(~$ss mb)!"
- echo " real = $F байт  >  max = $max_size_super2 байт"
+ echo ".....Die Summe der Größen der erhaltenen Images, mehr als von $rr Bytes erlaubt (~$ss MB)!"
+ echo " real = $F Byte  >  max = $max_size_super2 Byte"
   fi
 
  }
@@ -150,9 +150,9 @@ END {print a*b}')"
 {
  if [ ! -z "$opla" -a ! -z "$sparse_super" ]; then
  echo
- echo ".....Образ определён, как super.img(sparse)"
+ echo ".....Image ist definiert als super.img (sparse)"
  echo
- echo ".....Конвертация "$file"(sparse) -> $super_dir/super.raw.img(raw)..."
+ echo ".....Konvertieren "$file"(sparse) -> $super_dir/super.raw.img(raw)..."
  echo
 
  for clean_file in $(busybox find /data/local/UnpackerSuper/* -maxdepth 1 ! -name "super*" -a ! -name "output" 2> /dev/null); do
@@ -164,7 +164,7 @@ END {print a*b}')"
 
 
  simg2img "$file" "$super_dir"/super.raw.img
- echo ".....Извлечение образов из super.raw.img..."
+ echo ".....Extrahieren von Images aus super.raw.img..."
  echo
  lpunpack "$super_dir"/super.raw.img "$super_dir"
  if [ $(echo $?) -eq 0 ] ; then
@@ -174,18 +174,18 @@ END {print a*b}')"
  super_space
 
  echo
- echo ".....Образы успешно извлечены в папку: $super_dir"
+ echo ".....Images wurden erfolgreich in den Ordner extrahiert: $super_dir"
  echo
  else
  echo
- echo ".....Ошибка при извлечении образов!"
+ echo ".....Fehler beim Abrufen von Images!"
  echo
  fi
  elif [ ! -z "$opla" -a -z "$sparse_super" ]; then
  echo
- echo ".....Образ определён, как super.img(raw)"
+ echo ".....Image ist als super.img definiert (raw)"
  echo
- echo ".....Извлечение образов из "$file"..."
+ echo ".....Images extrahieren aus "$file"..."
  echo
 
  for clean_file in $(busybox find /data/local/UnpackerSuper/* -maxdepth 1 ! -name "super*" -a ! -name "output" 2> /dev/null); do
@@ -204,12 +204,12 @@ END {print a*b}')"
  super_space
 
  echo
- echo ".....Образы успешно извлечены в папку: $super_dir"
+ echo ".....Imges wurden erfolgreich in den Ordner extrahiert: $super_dir"
  echo
 
  else
  echo
- echo ".....Ошибка при извлечении образов!"
+ echo ".....Fehler beim Erhalten von Images!"
  echo
  fi
  return
@@ -264,14 +264,14 @@ busybox find "$r_name" -type l | busybox xargs busybox tar -cf "$config"/"$r_nam
  super
  elif [ ! -z "$erofs" -a -z "$sparse_super" ]; then
  echo
- echo "\033[33;1m.....$file имеет файловую систему erofs!\033[0m"
+ echo "\033[33;1m.....$file ist erofs Dateisystem!\033[0m"
  erfs
  elif [ ! -z "$erofs" -a ! -z "$sparse_super" ]; then
  file_raw="/$nd"/"$r_name".raw.img
  echo
- echo "\033[33;1m.....$file имеет файловую систему erofs!\033[0m"
+ echo "\033[33;1m.....$file ist erofs Dateisystem!\033[0m"
  echo
- echo ".....Конвертация "$file" -> "$file_raw"..."
+ echo ".....Konvertieren "$file" -> "$file_raw"..."
 
  simg2img "$file" "$file_raw" && file="$file_raw"
  erfs
@@ -280,14 +280,14 @@ busybox find "$r_name" -type l | busybox xargs busybox tar -cf "$config"/"$r_nam
  else
  
  echo
- echo ".....Удаление старой папки \""$r_name"\" и файлов конфигурации..."
+ echo ".....Alten Ordner \"$r_name"\" und die Konfigurationsdateien löschen…"
 
  find -maxdepth 1 -name "$r_name" -type d | xargs rm -rf
  
  if [ -f "$r_name" ]; then
  echo
- echo ".....Внимание! Имя файла: "$PWD"/"$r_name" уже существует"
- echo ".....Переименовываем "$r_name" в "$r_name".real.img"
+ echo ".....Achtung! Dateiname: "$PWD"/"$r_name" existiert bereits"
+ echo ".....Umbenennen "$r_name" в "$r_name".real.img"
  echo
  busybox mv -f "$r_name" "$r_name".real.img
  fi
@@ -309,7 +309,7 @@ if [ -f "$file" ]; then
  #fi
  if [ -z "$(busybox hexdump -C -n 20000 "$file" | grep -o "3a ff 26 ed")" ]; then
  echo
- echo ".....Проверка образа..."
+ echo ".....Image-Verifizierung..."
  e2fsck -pf -E bmap2extent "$file" &> "$config"/"$r_name"_e2fsk.log
  fi
  return
@@ -318,7 +318,7 @@ if [ -f "$file" ]; then
 
  
  #echo
- echo ".....Распаковка ${file}..."
+ echo ".....Entpacken ${file}…"
 
  python39 /data/local/binary/bin_system/imgextractor1.py "$file" "$PWD"
 if [ $(echo $?) -eq 0 ] ; then
@@ -338,7 +338,7 @@ busybox find "$r_name" -type l -exec busybox stat -c '%N %u %g %a' {} \; | busyb
  fi
 else
  echo 
- echo ".....Error! Нет расп������ванной папки ��ли "$config"/"$r_name"_fs_config."
+ echo ".....Fehler! Gibt es einen geteilten Ordner? "$config"/"$r_name"_fs_config."
  fi
 
 
@@ -447,15 +447,15 @@ real_con="/${rrrr_name}(/.*)? u:object_r:persist_data_file:s0"
  busybox cp "$base_dir"/${r_name}/system/etc/selinux/plat_file_contexts "$base_dir"/"$config"/${r_name}_file_contexts_orig && sed -i "s!^/!/${r_name}/!" "$base_dir"/"$config"/${r_name}_file_contexts_orig
  fi
 
- con_sar #функция для SAR
+ con_sar #Funktion für SAR
 
- echo ".....Detected image \"System as Root\""
+ echo ".....Erkanntes Image \"System als Root\""
  
 
  elif [ "$sar" == "false" ]; then
 
- echo ".....Detected image not \"System as Root\""
- contet #функция для не SAR
+ echo ".....Erkanntes Image nicht \"System als Root\""
+ contet #Funktion für SAR
  fi
 
  
@@ -525,7 +525,7 @@ real_con="/${rrrr_name}(/.*)? u:object_r:persist_data_file:s0"
  echo
  echo "\033[33;1m.....Erfolgreich entpackt! \033[0m"
  echo
- echo "...Es gibt Dateien mit Leerzeichen im "${file}" Build, beheben..."
+ echo "...Es gibt Dateien mit Leerzeichen im "${file}" Build, beheben…"
  echo "$h" > "$config"/"$r_name"_space.txt
  gg
  #. "$dir"/cap_unpak
@@ -561,4 +561,4 @@ echo "....."$file" Image nicht im Ordner: /data/local/UnpackerSystem."
 echo
  fi
  fi
- 
+ 

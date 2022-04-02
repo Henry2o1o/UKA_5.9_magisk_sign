@@ -31,7 +31,7 @@ echo
 echo ".....Erfolgreich ausgehängt: "$dir_loop""
 echo
  losetup -d "$loops" 2> /dev/null
- rm -rf "$dir_loop" || echo "Ошибка удаления."
+ rm -rf "$dir_loop" || echo "Fehler beim Löschen."
 fi
 else
 for i in 0 1 2 3 4 5 6 7; do
@@ -66,7 +66,7 @@ fi
 else
 echo
 echo "\033[31;47;1m ...Mount-Fehler bei Caps-Eingabe!    \033[0m"
-echo "\033[31;47;1m ...Berechtigungen nicht erhalten!                  \033[0m"
+echo "\033[31;47;1m ...Berechtigungen nicht erhalten!     \033[0m"
 echo
 fi
           fi

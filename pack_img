@@ -52,7 +52,7 @@ if [ -f ./"$pack_d".new.img ]; then
 if [ -z "$(busybox hexdump -C -n 4 ./"$pack_d".new.img | busybox grep '3a ff 26 ed')" ]; then
   #. ${dir}/cap_pak
 echo
-echo ".....Конвертация в sparse..."
+echo ".....In sparse konvertieren..."
 echo
 img2simg ./"$pack_d".new.img ./"$pack_d".sparse.img 2> /dev/nul
             if [ $(echo $?) -eq 0 ]; then
@@ -63,7 +63,7 @@ busybox rm -f ./file_contexts ./fs_config
 echo ".....Sparse-Image erhalten: \""$pack_d".new.img\"!"
 else
 echo
-echo ".....Das Bild ist schon spärlich."
+echo ".....Das Image ist schon sparse."
 echo
 fi
 else
@@ -75,7 +75,7 @@ fi
 
 my_pack(){
 echo
-echo ".....Wir sammeln mit einem Dritten file_contexts…"
+echo ".....Mit einem Dritten zusammenfügen file_contexts…"
 cp ./"$config"/"$pack_d"*_fs_config ./fs_config
 if [ -f ./file_contexts -a -f ./fs_config ]; then
 echo
@@ -106,7 +106,7 @@ if [ "$size" = "111" ]; then
  fi
  else
  echo
- echo ".....Fehler: Fehler beim erstellen!"
+ echo ".....Fehler: Fehler beim Erstellen!"
  echo
  fi
 
@@ -120,7 +120,7 @@ Erfolgreich erstellt "$pack_d".new.img!"
  size_output_sparse
  else
  echo
- echo ".....Fehler: Fehler beim erstellen"
+ echo ".....Fehler: Fehler beim Erstellen"
  echo
  fi
  fi
@@ -183,7 +183,7 @@ fi
 
  if [ ! -f ./file_contexts ]; then
 echo
-echo ".....Dateikontexte von Drittanbietern nicht gefunden, sammeln mit erhalten beim Entpacken des Images..."
+echo ".....Dateikontexte von Drittanbietern nicht gefunden, zusammenfügen mit erhalten beim Entpacken des Images..."
 cp ./"$config"/"$pack_d"*_fs_config ./fs_config
 cp ./"$config"/"$pack_d"*_file_contexts ./file_contexts
 if [ -f ./file_contexts -a -f ./fs_config ]; then

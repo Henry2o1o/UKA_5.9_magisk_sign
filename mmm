@@ -102,7 +102,7 @@ nnn()
  echo
  echo "....Achtung! Speicherordner existiert nicht!"
  echo
- echo "    Установлена папка сохранения выходного образа:"
+ echo "    Ordner zum Speichern von Images festlegen:"
  dir_b=/data/local/UnpackerSystem/uka_backup
  set -- $dir_b
  mkdir "$dir_b" 2> /dev/null
@@ -196,8 +196,8 @@ if [ "$?" -eq "0" ]; then
 #busybox mkdir -p output
 busybox mv -f preloader.tmp output/"${name_pre}"
 echo
-echo ".....Успешно извлечён $name_pre!"
-echo ".....Сохранено в /data/local/UnpackerPreloader/output"
+echo ".....$name_pre erfolgreich abgerufen!"
+echo ".....Gespeichert unter /data/local/UnpackerPreloader/output"
 echo
 else
 echo
@@ -327,7 +327,7 @@ return
  cd - &> /dev/null
  echo
  echo ".....Erfolgreich erhalten $name_pre!"
- echo ".....Gespeichert im Ordner: $dir_pre"
+ echo ".....Im Ordner gespeichert: $dir_pre"
  echo
  return
  else
