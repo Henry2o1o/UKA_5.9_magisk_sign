@@ -194,7 +194,7 @@ END {print a*b}')"
  rm -f config/pack_super.tmp
  if [ -f config/pack_super.sh -a ! -z "$spars" ]; then
  echo
- echo "....$out sammeln..."
+ echo "....$out zusammenführen…"
  echo
  
  mkdir ./output 2> /dev/null
@@ -203,7 +203,7 @@ END {print a*b}')"
 {
 rr="$(busybox expr "$max_size_super2" - "$F")"
  ss=$(busybox expr "$rr" / 1024 / 1024)
- echo "....Summe der Größen der zu sammelnden Images, die um $rr Byte kleiner sind als das Maximum(~$ss MB)"
+ echo "....Summe der Größen der zusammmen zu führenden Images, die um $rr Byte kleiner sind als das Maximum(~$ss MB)"
  echo " real = $F Byte  <  max = $max_size_super2 Byte"
  echo
  #echo "....$out erfolgreich erstellt!"
@@ -216,8 +216,8 @@ size_plus()
 {
 rr="$(busybox expr "$F" - "$max_size_super2")"
  ss=$(busybox expr "$rr" / 1024 / 1024)
- echo "....Summe der Größe der zusammenzusetzenden Images, die größer ist als die zulässiges $rr Bytes (~$ss mb)!"
- echo " real = $F байт  >  max = $max_size_super2 байт"
+ echo "....Summe der Größe der zusammmen zu führenden Images, die größer ist als die zulässiges $rr Bytes (~$ss mb)!"
+ echo " real = $F байт  >  max = $max_size_super2 Bytes"
  echo
 return
 }
